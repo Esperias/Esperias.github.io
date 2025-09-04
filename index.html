@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esperia | Home</title>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <style>
+        /* Simple animation for the header */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-down {
+            animation: fadeInDown 1s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <!-- Header -->
+    <header class="bg-gray-800 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Esperia</a>
+            <div>
+                <a href="[https://discord.gg/Fbr3X9Z9jE](https://discord.gg/Fbr3X9Z9jE)" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Join Discord</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Hero Section -->
+        <section class="text-center fade-in-down">
+            <h1 class="text-5xl font-extrabold mb-4">Welcome to Esperia!</h1>
+            <p class="text-xl text-gray-400 mb-8">Your new favorite place to play, build, and connect.</p>
+            <div class="bg-gray-800 inline-flex items-center rounded-lg p-2 space-x-4">
+                <!-- You can edit the server address later if you want -->
+                <span id="server-ip" class="text-lg font-mono text-gray-300">grow.esperia.com</span>
+                <button onclick="copyIp()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Copy IP</button>
+            </div>
+            <p id="copy-success" class="text-green-400 mt-2 opacity-0 transition-opacity duration-300">Copied to clipboard!</p>
+        </section>
+
+        <!-- Features Section -->
+        <section class="mt-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Server Features</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- You can customize these features later -->
+                <div class="bg-gray-800 p-6 rounded-lg text-center">
+                    <h3 class="text-xl font-bold mb-2">Custom Items</h3>
+                    <p class="text-gray-400">Discover hundreds of unique, custom-made items you won't find anywhere else.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg text-center">
+                    <h3 class="text-xl font-bold mb-2">Active Staff</h3>
+                    <p class="text-gray-400">Our friendly and active staff are always online and ready to help you out.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg text-center">
+                    <h3 class="text-xl font-bold mb-2">Weekly Events</h3>
+                    <p class="text-gray-400">Join our exciting weekly events to win amazing prizes and have fun with the community.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section class="mt-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Server Rules</h2>
+            <div class="bg-gray-800 p-8 rounded-lg max-w-2xl mx-auto">
+                <!-- You can customize these rules later -->
+                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                    <li>Be respectful to all players and staff.</li>
+                    <li>No scamming, hacking, or exploiting bugs.</li>
+                    <li>Do not spam the chat or use excessive caps.</li>
+                    <li>English only in the main chat channels.</li>
+                    <li>Have fun!</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 mt-20">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-400">
+            &copy; 2025 Esperia. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to copy the IP address to clipboard
+        function copyIp() {
+            const ipText = document.getElementById('server-ip').innerText;
+            const textArea = document.createElement('textarea');
+            textArea.value = ipText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                const successMessage = document.getElementById('copy-success');
+                successMessage.style.opacity = '1';
+                setTimeout(() => {
+                    successMessage.style.opacity = '0';
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+            document.body.removeChild(textArea);
+        }
+    </script>
+
+</body>
+</html>
