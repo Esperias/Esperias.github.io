@@ -3,100 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esperia | Home</title>
-    <!-- This line has been corrected -->
+    <title>Esperia | Your Universe Awaits</title>
     <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+    <link href="[https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@400;600&display=swap](https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@400;600&display=swap)" rel="stylesheet">
     <style>
-        /* Simple animation for the header */
-        @keyframes fadeInDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        :root {
+            --c-bg: #0d0a1f;
+            --c-bg-light: #1f1a3a;
+            --c-border: #3b3273;
+            --c-primary: #a77df4;
+            --c-secondary: #7062e0;
+            --c-glow: rgba(167, 125, 244, 0.5);
         }
-        .fade-in-down {
-            animation: fadeInDown 1s ease-out;
+        body {
+            background-color: var(--c-bg);
+            font-family: 'Poppins', sans-serif;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill="%231f1a3a" fill-opacity="0.4"%3E%3Ccircle cx="50" cy="50" r="1"/%3E%3Ccircle cx="10" cy="10" r="1"/%3E%3Ccircle cx="90" cy="10" r="1"/%3E%3Ccircle cx="10" cy="90" r="1"/%3E%3Ccircle cx="90" cy="90" r="1"/%3E%3C/g%3E%3C/svg%3E');
         }
+        .font-title { font-family: 'Orbitron', sans-serif; }
+        .bg-gradient-hero { background-image: linear-gradient(to right, var(--c-primary), var(--c-secondary)); }
+        .card-glow { transition: all 0.3s ease; }
+        .card-glow:hover {
+            box-shadow: 0 0 25px var(--c-glow);
+            transform: translateY(-5px);
+            border-color: var(--c-primary);
+        }
+        .btn-primary {
+            background-color: var(--c-primary);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--c-glow);
+        }
+        .btn-primary:hover { background-color: var(--c-secondary); }
+        .nav-link.active {
+            background-color: var(--c-primary);
+            color: white;
+            box-shadow: 0 0 10px var(--c-glow);
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .page-content { animation: fadeIn 0.6s ease-out; }
     </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="text-gray-200">
 
-    <!-- Header -->
-    <header class="bg-gray-800 shadow-lg">
+    <!-- Header and Navigation -->
+    <header class="bg-c-bg-light/80 backdrop-blur-sm border-b border-c-border shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">Esperia</a>
-            <div>
-                <!-- This line has been corrected -->
-                <a href="[https://discord.gg/Fbr3X9Z9jE](https://discord.gg/Fbr3X9Z9jE)" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Join Discord</a>
+            <a href="#" class="font-title text-3xl font-bold text-white">ESPERIA</a>
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="#" class="nav-link py-2 px-4 rounded-lg hover:bg-c-primary transition duration-300" data-page="home">Home</a>
+                <a href="#" class="nav-link py-2 px-4 rounded-lg hover:bg-c-primary transition duration-300" data-page="events">Events</a>
+                <a href="#" class="nav-link py-2 px-4 rounded-lg hover:bg-c-primary transition duration-300" data-page="items">Items</a>
+                <a href="#" class="nav-link py-2 px-4 rounded-lg hover:bg-c-primary transition duration-300" data-page="rules">Rules</a>
             </div>
+            <div class="hidden md:block">
+                <a href="[https://discord.gg/Fbr3X9Z9jE](https://discord.gg/Fbr3X9Z9jE)" target="_blank" class="btn-primary text-white font-bold py-2 px-5 rounded-lg">Join Discord</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden">
+                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h16"></path></svg>
+            </button>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 py-12">
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-c-bg-light/95 backdrop-blur-lg absolute top-0 left-0 w-full h-screen z-40">
+        <div class="flex flex-col items-center justify-center h-full space-y-6">
+             <a href="#" class="nav-link text-2xl" data-page="home">Home</a>
+             <a href="#" class="nav-link text-2xl" data-page="events">Events</a>
+             <a href="#" class="nav-link text-2xl" data-page="items">Items</a>
+             <a href="#" class="nav-link text-2xl" data-page="rules">Rules</a>
+             <a href="[https://discord.gg/Fbr3X9Z9jE](https://discord.gg/Fbr3X9Z9jE)" target="_blank" class="btn-primary text-white font-bold py-3 px-6 rounded-lg mt-4">Join Discord</a>
+        </div>
+    </div>
 
-        <!-- Hero Section -->
-        <section class="text-center fade-in-down">
-            <h1 class="text-5xl font-extrabold mb-4">Welcome to Esperia!</h1>
-            <p class="text-xl text-gray-400 mb-8">Your new favorite place to play, build, and connect.</p>
-            <div class="bg-gray-800 inline-flex items-center rounded-lg p-2 space-x-4">
-                <!-- You can edit the server address later if you want -->
-                <span id="server-ip" class="text-lg font-mono text-gray-300">grow.esperia.com</span>
-                <button onclick="copyIp()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">Copy IP</button>
-            </div>
-            <p id="copy-success" class="text-green-400 mt-2 opacity-0 transition-opacity duration-300">Copied to clipboard!</p>
-        </section>
-
-        <!-- Features Section -->
-        <section class="mt-20">
-            <h2 class="text-3xl font-bold text-center mb-10">Server Features</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- You can customize these features later -->
-                <div class="bg-gray-800 p-6 rounded-lg text-center">
-                    <h3 class="text-xl font-bold mb-2">Custom Items</h3>
-                    <p class="text-gray-400">Discover hundreds of unique, custom-made items you won't find anywhere else.</p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg text-center">
-                    <h3 class="text-xl font-bold mb-2">Active Staff</h3>
-                    <p class="text-gray-400">Our friendly and active staff are always online and ready to help you out.</p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg text-center">
-                    <h3 class="text-xl font-bold mb-2">Weekly Events</h3>
-                    <p class="text-gray-400">Join our exciting weekly events to win amazing prizes and have fun with the community.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Rules Section -->
-        <section class="mt-20">
-            <h2 class="text-3xl font-bold text-center mb-10">Server Rules</h2>
-            <div class="bg-gray-800 p-8 rounded-lg max-w-2xl mx-auto">
-                <!-- You can customize these rules later -->
-                <ul class="list-disc list-inside space-y-2 text-gray-300">
-                    <li>Be respectful to all players and staff.</li>
-                    <li>No scamming, hacking, or exploiting bugs.</li>
-                    <li>Do not spam the chat or use excessive caps.</li>
-                    <li>English only in the main chat channels.</li>
-                    <li>Have fun!</li>
-                </ul>
-            </div>
-        </section>
-
+    <!-- Main Content Area -->
+    <main id="main-content" class="container mx-auto px-6 py-12">
+        <!-- JS Populated -->
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 mt-20">
-        <div class="container mx-auto px-6 py-4 text-center text-gray-400">
+    <footer class="bg-transparent mt-12">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500 border-t border-c-border">
             &copy; 2025 Esperia. All Rights Reserved.
         </div>
     </footer>
 
     <script>
-        // Simple script to copy the IP address to clipboard
+        const pageContent = {
+            home: `
+                <div class="page-content text-center">
+                    <h1 class="font-title text-6xl font-extrabold mb-4 bg-gradient-hero text-transparent bg-clip-text">Welcome to Esperia</h1>
+                    <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">Your new universe of adventure awaits. Forge alliances, conquer dungeons, and build your legacy among the stars.</p>
+                    <div class="bg-c-bg-light inline-flex items-center rounded-lg p-2 space-x-4 border border-c-border">
+                        <span id="server-ip" class="text-lg font-mono text-gray-300">grow.esperia.com</span>
+                        <button onclick="copyIp()" class="btn-primary text-white font-bold py-2 px-4 rounded-lg">Copy IP</button>
+                    </div>
+                    <p id="copy-success" class="text-green-400 mt-2 opacity-0 transition-opacity duration-300">Copied!</p>
+
+                    <div class="mt-24">
+                        <h2 class="font-title text-4xl font-bold text-center mb-12">Why Join Us?</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="card-glow bg-c-bg-light p-8 rounded-lg text-center border border-c-border">
+                                <h3 class="font-title text-2xl font-bold mb-3">Limitless Items</h3>
+                                <p class="text-gray-400">Explore a universe of unique, custom-coded items and gear you won't find anywhere else.</p>
+                            </div>
+                            <div class="card-glow bg-c-bg-light p-8 rounded-lg text-center border border-c-border">
+                                <h3 class="font-title text-2xl font-bold mb-3">Epic Events</h3>
+                                <p class="text-gray-400">Engage in thrilling weekly events, from cosmic boss battles to intergalactic fashion shows.</p>
+                            </div>
+                            <div class="card-glow bg-c-bg-light p-8 rounded-lg text-center border border-c-border">
+                                <h3 class="font-title text-2xl font-bold mb-3">Dedicated Crew</h3>
+                                <p class="text-gray-400">Our active and friendly staff are committed to making your journey through Esperia unforgettable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            events: `
+                <div class="page-content">
+                    <h1 class="font-title text-5xl font-bold text-center mb-16">Server Events</h1>
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <div class="card-glow bg-c-bg-light rounded-lg overflow-hidden shadow-lg border border-c-border flex flex-col md:flex-row">
+                            <img src="[https://placehold.co/600x600/0d0a1f/a77df4?text=Galaxy+Boss](https://placehold.co/600x600/0d0a1f/a77df4?text=Galaxy+Boss)" alt="Event" class="w-full md:w-1/3 object-cover">
+                            <div class="p-8">
+                                <h3 class="font-title text-3xl font-bold mb-2">The Void Wyrm</h3>
+                                <p class="text-primary font-semibold mb-4">Every Saturday @ 8 PM EST</p>
+                                <p class="text-gray-400">Team up to defeat the galaxy-devouring Void Wyrm! Epic loot is guaranteed for all brave enough to face it.</p>
+                            </div>
+                        </div>
+                        <div class="card-glow bg-c-bg-light rounded-lg overflow-hidden shadow-lg border border-c-border flex flex-col md:flex-row">
+                            <img src="[https://placehold.co/600x600/0d0a1f/a77df4?text=Star+Race](https://placehold.co/600x600/0d0a1f/a77df4?text=Star+Race)" alt="Event" class="w-full md:w-1/3 object-cover">
+                            <div class="p-8">
+                                <h3 class="font-title text-3xl font-bold mb-2">Comet Racing</h3>
+                                <p class="text-primary font-semibold mb-4">First Weekend of the Month</p>
+                                <p class="text-gray-400">Navigate treacherous asteroid fields in our high-speed racing event. Win a unique mount and bragging rights!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            items: `
+                <div class="page-content">
+                    <h1 class="font-title text-5xl font-bold text-center mb-16">Featured Items</h1>
+                    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="card-glow bg-c-bg-light p-6 rounded-lg text-center border border-c-border">
+                            <img src="[https://placehold.co/300x300/1f1a3a/ffffff?text=Singularity+Sword](https://placehold.co/300x300/1f1a3a/ffffff?text=Singularity+Sword)" alt="Item" class="mx-auto mb-4 rounded-lg">
+                            <h3 class="font-title text-xl font-bold">Singularity Sword</h3>
+                            <p class="text-gray-400 text-sm">Forged in a black hole. Has a chance to pull enemies closer.</p>
+                        </div>
+                        <div class="card-glow bg-c-bg-light p-6 rounded-lg text-center border border-c-border">
+                            <img src="[https://placehold.co/300x300/1f1a3a/ffffff?text=Nebula+Wings](https://placehold.co/300x300/1f1a3a/ffffff?text=Nebula+Wings)" alt="Item" class="mx-auto mb-4 rounded-lg">
+                            <h3 class="font-title text-xl font-bold">Nebula Wings</h3>
+                            <p class="text-gray-400 text-sm">Leave a trail of stardust as you fly through worlds.</p>
+                        </div>
+                         <div class="card-glow bg-c-bg-light p-6 rounded-lg text-center border border-c-border">
+                            <img src="[https://placehold.co/300x300/1f1a3a/ffffff?text=Cosmic+Helm](https://placehold.co/300x300/1f1a3a/ffffff?text=Cosmic+Helm)" alt="Item" class="mx-auto mb-4 rounded-lg">
+                            <h3 class="font-title text-xl font-bold">Helm of the Cosmos</h3>
+                            <p class="text-gray-400 text-sm">Grants the wearer the ability to see hidden star-signs.</p>
+                        </div>
+                         <div class="card-glow bg-c-bg-light p-6 rounded-lg text-center border border-c-border">
+                            <img src="[https://placehold.co/300x300/1f1a3a/ffffff?text=Gravity+Boots](https://placehold.co/300x300/1f1a3a/ffffff?text=Gravity+Boots)" alt="Item" class="mx-auto mb-4 rounded-lg">
+                            <h3 class="font-title text-xl font-bold">Zero-G Boots</h3>
+                            <p class="text-gray-400 text-sm">Perform a super-high jump every 30 seconds.</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            rules: `
+                <div class="page-content">
+                    <h1 class="font-title text-5xl font-bold text-center mb-16">Galactic Code of Conduct</h1>
+                    <div class="bg-c-bg-light p-8 rounded-lg max-w-3xl mx-auto border border-c-border">
+                       <ul class="space-y-4 text-gray-300">
+                           <li class="flex items-start"><span class="bg-c-primary text-c-bg-light font-bold rounded-full w-6 h-6 text-center mr-4">1</span><span>Respect All Lifeforms. Be respectful to all players and staff. No harassment or hate speech.</span></li>
+                           <li class="flex items-start"><span class="bg-c-primary text-c-bg-light font-bold rounded-full w-6 h-6 text-center mr-4">2</span><span>Honor the Game. No scamming, hacking, or exploiting bugs. Play fairly.</span></li>
+                           <li class="flex items-start"><span class="bg-c-primary text-c-bg-light font-bold rounded-full w-6 h-6 text-center mr-4">3</span><span>Maintain Comms Silence. Do not spam, use excessive caps, or advertise.</span></li>
+                           <li class="flex items-start"><span class="bg-c-primary text-c-bg-light font-bold rounded-full w-6 h-6 text-center mr-4">4</span><span>Respect Property. Building inappropriate structures is strictly forbidden.</span></li>
+                           <li class="flex items-start"><span class="bg-c-primary text-c-bg-light font-bold rounded-full w-6 h-6 text-center mr-4">5</span><span>Uphold Your Identity. Do not impersonate staff or other players.</span></li>
+                       </ul>
+                   </div>
+                </div>
+            `
+        };
+
+        const mainContent = document.getElementById('main-content');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
+        function showPage(pageId) {
+            mainContent.innerHTML = pageContent[pageId];
+            mobileMenu.classList.add('hidden');
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(e.target.dataset.page);
+            });
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('DOMContentLoaded', () => showPage('home'));
+
         function copyIp() {
             const ipText = document.getElementById('server-ip').innerText;
             const textArea = document.createElement('textarea');
@@ -107,12 +230,8 @@
                 document.execCommand('copy');
                 const successMessage = document.getElementById('copy-success');
                 successMessage.style.opacity = '1';
-                setTimeout(() => {
-                    successMessage.style.opacity = '0';
-                }, 2000);
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
-            }
+                setTimeout(() => { successMessage.style.opacity = '0'; }, 2000);
+            } catch (err) { console.error('Failed to copy text: ', err); }
             document.body.removeChild(textArea);
         }
     </script>
