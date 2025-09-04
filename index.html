@@ -87,6 +87,10 @@
         .btn-secondary:hover {
             border-color: var(--c-purple);
         }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
         /* Style for info cards */
         .info-card {
             background-color: var(--c-bg-light);
@@ -492,7 +496,7 @@
                             <button class="tab-btn bg-c-bg-light border border-c-border rounded-lg py-2 px-5 font-semibold" data-category="currencies">Currencies</button>
                         </div>
                         <div class="relative w-full md:w-auto">
-                            <input type="text" id="shop-search" class="bg-c-bg-light border border-c-border rounded-lg py-2 px-4 w-full md:w-64 text-white placeholder-c-text-secondary" placeholder="Search for items...">
+                            <input type="text" id="shop-search" class="bg-c-bg-light border border-c-border rounded-lg py-2 px-4 w-full md:w-64 placeholder-c-text-secondary" placeholder="Search for items...">
                             <svg class="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-c-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </div>
                     </div>
@@ -565,15 +569,12 @@
             sections.forEach(section => observer.observe(section));
 
             // Fix for dropdown links not scrolling
-            document.querySelectorAll('#info-dropdown a, #mobile-menu a, .btn').forEach(anchor => {
+            document.querySelectorAll('#info-dropdown a, #mobile-menu a, .btn, .nav-link').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
                     if (href && href.startsWith('#')) {
                         e.preventDefault();
-                        const targetEl = document.querySelector(href);
-                        if(targetEl) {
-                           targetEl.scrollIntoView({ behavior: 'smooth' });
-                        }
+                        document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
                     }
                 });
             });
@@ -668,22 +669,23 @@
 
             // --- DYNAMIC SHOP LOGIC ---
             const allShopItems = [
-                // ROLES (20 items)
-                { id: 1, category: 'roles', name: 'Supporter Rank', price: 10.00, desc: 'Get exclusive in-game perks and a special rank tag.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Supporter' },
-                { id: 2, category: 'roles', name: 'VIP Rank', price: 25.00, desc: 'All Supporter perks, plus access to the /vip command.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=VIP' },
-                { id: 3, category: 'roles', name: 'Esperia+ Rank', price: 50.00, desc: 'The ultimate rank with all perks and a custom name color.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Esperia%2B' },
-                ...Array.from({ length: 17 }, (_, i) => ({ id: i + 4, category: 'roles', name: `Premium Role ${i + 1}`, price: 15.00 + i * 5, desc: 'Another amazing role with unique benefits.', img: `https://placehold.co/400x250/1A1A2E/9333ea?text=Role+${i+4}` })),
+                // ROLES - Updated Prices
+                { id: 1, category: 'roles', name: 'Overlord Role', price: 3.50, desc: 'The ultimate prestige. All perks included.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Overlord', priceId: 'price_REPLACE_ME' },
+                { id: 2, category: 'roles', name: 'Warlord Role', price: 7.50, desc: 'A role for the mighty warriors of Esperia.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Warlord', priceId: 'price_REPLACE_ME' },
+                { id: 3, category: 'roles', name: 'Highborn Role', price: 15.00, desc: 'Join the elite with this noble rank.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Highborn', priceId: 'price_REPLACE_ME' },
+                { id: 4, category: 'roles', name: 'Ascendant Role', price: 25.00, desc: 'Rise above the rest with powerful abilities.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Ascendant', priceId: 'price_REPLACE_ME' },
+                { id: 5, category: 'roles', name: 'Mythic Role', price: 39.99, desc: 'A legendary role for dedicated players.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Mythic', priceId: 'price_REPLACE_ME' },
+                { id: 6, category: 'roles', name: 'Celestial Role', price: 79.99, desc: 'A heavenly rank with unique cosmetic perks.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Celestial', priceId: 'price_REPLACE_ME' },
+                { id: 7, category: 'roles', name: 'Primarch Role', price: 120.99, desc: 'A great starter rank to show your support.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Primarch', priceId: 'price_REPLACE_ME' },
 
-                // ITEMS (30 items)
-                { id: 21, category: 'items', name: 'Custom Item Token', price: 25.00, desc: 'Redeem to create your own custom item with our staff.', img: 'https://placehold.co/400x250/1A1A2E/e0e0e0?text=Custom+Token' },
-                { id: 22, category: 'items', name: 'Legendary Pack', price: 15.00, desc: 'A set of powerful legendary items to kickstart your journey.', img: 'https://placehold.co/400x250/1A1A2E/e0e0e0?text=Legendary+Pack' },
-                ...Array.from({ length: 28 }, (_, i) => ({ id: i + 23, category: 'items', name: `Epic Item ${i + 1}`, price: 5.00 + i * 2, desc: 'A rare and powerful item for your collection.', img: `https://placehold.co/400x250/1A1A2E/e0e0e0?text=Item+${i+3}` })),
+                // ITEMS
+                { id: 21, category: 'items', name: 'Custom Item Token', price: 25.00, desc: 'Redeem to create your own custom item with our staff.', img: 'https://placehold.co/400x250/1A1A2E/e0e0e0?text=Custom+Token', priceId: 'price_REPLACE_ME' },
+                { id: 22, category: 'items', name: 'Legendary Pack', price: 15.00, desc: 'A set of powerful legendary items to kickstart your journey.', img: 'https://placehold.co/400x250/1A1A2E/e0e0e0?text=Legendary+Pack', priceId: 'price_REPLACE_ME' },
                 
-                // CURRENCIES (10 items)
-                { id: 51, category: 'currencies', name: '50 World Locks', price: 5.00, desc: 'Stock up on the server\'s main currency.', img: 'https://placehold.co/400x250/1A1A2E/22d3ee?text=50+WLs' },
-                { id: 52, category: 'currencies', name: '125 World Locks', price: 10.00, desc: 'A bigger bundle of WLs for your big projects.', img: 'https://placehold.co/400x250/1A1A2E/22d3ee?text=125+WLs' },
-                { id: 53, category: 'currencies', name: '300 World Locks', price: 20.00, desc: 'The best value pack for serious traders and builders.', img: 'https://placehold.co/400x250/1A1A2E/22d3ee?text=300+WLs' },
-                ...Array.from({ length: 7 }, (_, i) => ({ id: i + 54, category: 'currencies', name: `${(i+4)*100} Gems`, price: 8.00 + i * 4, desc: 'A bundle of gems for various in-game uses.', img: `https://placehold.co/400x250/1A1A2E/22d3ee?text=Gems` })),
+                // CURRENCIES
+                { id: 51, category: 'currencies', name: '50 World Locks', price: 5.00, desc: 'Stock up on the server\'s main currency.', img: 'https://placehold.co/400x250/1A1A2E/22d3ee?text=50+WLs', priceId: 'price_REPLACE_ME' },
+                { id: 52, category: 'currencies', name: '125 World Locks', price: 10.00, desc: 'A bigger bundle of WLs for your big projects.', img: 'https://placehold.co/400x250/1A1A2E/22d3ee?text=125+WLs', priceId: 'price_REPLACE_ME' },
+                { id: 53, category: 'currencies', name: '300 World Locks', price: 20.00, desc: 'The best value pack for serious traders and builders.', img: 'https://placehold.co/400x250/1A1A2E/22d3ee?text=300+WLs', priceId: 'price_REPLACE_ME' },
             ];
 
             const shopGrid = document.getElementById('shop-items-grid');
@@ -699,18 +701,16 @@
             function renderShop() {
                 if (!shopGrid || !shopPagination) return;
                 
-                // 1. Filter items
                 const filteredItems = allShopItems
                     .filter(item => item.category === currentCategory)
                     .filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
-                // 2. Paginate
                 const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+                currentPage = Math.min(currentPage, totalPages) || 1;
                 const start = (currentPage - 1) * itemsPerPage;
                 const end = start + itemsPerPage;
                 const paginatedItems = filteredItems.slice(start, end);
 
-                // 3. Render items
                 shopGrid.innerHTML = paginatedItems.map(item => `
                     <div class="info-card flex flex-col">
                         <img src="${item.img}" alt="${item.name}" class="rounded-md mb-4">
@@ -718,55 +718,69 @@
                         <p class="text-c-text-secondary mb-4 flex-grow">${item.desc}</p>
                         <div class="flex justify-between items-center mt-auto">
                             <span class="text-2xl font-title text-c-diamond">$${item.price.toFixed(2)}</span>
-                            <a href="#" class="btn btn-primary glow-on-hover py-2 px-6 text-sm">Buy Now</a>
+                            <button class="btn btn-primary glow-on-hover py-2 px-6 text-sm buy-btn" data-price-id="${item.priceId}">Buy Now</button>
                         </div>
                     </div>
                 `).join('');
 
-                // 4. Render pagination
                 shopPagination.innerHTML = '';
                 if (totalPages > 1) {
-                    // Prev button
-                    const prevButton = document.createElement('button');
-                    prevButton.innerHTML = '&laquo;';
-                    prevButton.className = 'pagination-btn py-2 px-4 rounded-lg';
-                    prevButton.disabled = currentPage === 1;
-                    prevButton.addEventListener('click', () => {
-                        if (currentPage > 1) {
-                            currentPage--;
-                            renderShop();
-                        }
-                    });
-                    shopPagination.appendChild(prevButton);
-
-                    // Page numbers
-                    for (let i = 1; i <= totalPages; i++) {
-                        const pageButton = document.createElement('button');
-                        pageButton.innerText = i;
-                        pageButton.className = `pagination-btn py-2 px-4 rounded-lg ${i === currentPage ? 'active' : ''}`;
-                        pageButton.addEventListener('click', () => {
-                            currentPage = i;
+                    // Prev, page numbers, Next
+                    const createButton = (text, page, isDisabled = false) => {
+                        const button = document.createElement('button');
+                        button.innerHTML = text;
+                        button.className = `pagination-btn py-2 px-4 rounded-lg ${page === currentPage ? 'active' : ''}`;
+                        button.disabled = isDisabled;
+                        button.addEventListener('click', () => {
+                            currentPage = page;
                             renderShop();
                         });
-                        shopPagination.appendChild(pageButton);
+                        return button;
+                    };
+                    
+                    shopPagination.appendChild(createButton('&laquo;', currentPage - 1, currentPage === 1));
+                    for (let i = 1; i <= totalPages; i++) {
+                        shopPagination.appendChild(createButton(i, i));
                     }
-
-                    // Next button
-                    const nextButton = document.createElement('button');
-                    nextButton.innerHTML = '&raquo;';
-                    nextButton.className = 'pagination-btn py-2 px-4 rounded-lg';
-                    nextButton.disabled = currentPage === totalPages;
-                    nextButton.addEventListener('click', () => {
-                        if (currentPage < totalPages) {
-                            currentPage++;
-                            renderShop();
-                        }
-                    });
-                    shopPagination.appendChild(nextButton);
+                    shopPagination.appendChild(createButton('&raquo;', currentPage + 1, currentPage === totalPages));
                 }
             }
+            
+            shopGrid.addEventListener('click', async (e) => {
+                const buyButton = e.target.closest('.buy-btn');
+                if (buyButton) {
+                    const priceId = buyButton.dataset.priceId;
+                    if (!priceId || priceId === 'price_REPLACE_ME') {
+                        alert('This item is not available for purchase yet.');
+                        return;
+                    }
 
-            // Event listeners for shop controls
+                    buyButton.disabled = true;
+                    buyButton.innerText = 'Redirecting...';
+
+                    try {
+                        const response = await fetch('/api/create-checkout', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ priceId: priceId })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Server responded with an error.');
+                        }
+
+                        const { url } = await response.json();
+                        window.location.href = url;
+
+                    } catch (error) {
+                        console.error('Checkout failed:', error);
+                        alert('Could not connect to the shop. Please try again later.');
+                        buyButton.disabled = false;
+                        buyButton.innerText = 'Buy Now';
+                    }
+                }
+            });
+
             shopTabContainer.addEventListener('click', (e) => {
                 const clickedButton = e.target.closest('.tab-btn');
                 if (!clickedButton) return;
