@@ -39,17 +39,19 @@
         }
         .glow-on-hover:hover {
             box-shadow: 0 0 15px var(--c-purple), 0 0 5px var(--c-diamond);
-            transform: translateY(-4px);
+            transform: translateY(-2px);
         }
         /* Styles for the features slider */
         .slider-container {
             display: flex;
-            overflow: hidden; /* Hide scrollbar, control with code */
+            overflow: hidden;
             position: relative;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         .slider-track {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            pointer-events: none; /* Make slider non-interactive */
         }
         .slider-item {
             flex-shrink: 0;
@@ -63,6 +65,27 @@
             background: linear-gradient(to right, var(--c-purple), var(--c-diamond));
             color: white;
             box-shadow: 0 0 10px var(--c-purple);
+        }
+        /* Enhanced button styles */
+        .btn {
+            display: inline-block;
+            font-weight: bold;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, var(--c-purple), var(--c-diamond));
+            color: white;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--c-border);
+            color: white;
+        }
+        .btn-secondary:hover {
+            border-color: var(--c-purple);
         }
     </style>
 </head>
@@ -79,6 +102,7 @@
                 <a href="#about" class="nav-link hover:text-c-diamond transition duration-300" data-section="about">About</a>
                 <a href="#community" class="nav-link hover:text-c-diamond transition duration-300" data-section="community">Community</a>
             </div>
+            <a href="https://discord.gg/Fbr3X9Z9jE" target="_blank" class="hidden md:block btn btn-primary glow-on-hover text-sm py-2 px-6">Join Discord</a>
             <button id="mobile-menu-btn" class="md:hidden text-white z-10">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
@@ -93,6 +117,7 @@
              <a href="#features" class="nav-link text-2xl" data-section="features">Features</a>
              <a href="#about" class="nav-link text-2xl" data-section="about">About</a>
              <a href="#community" class="nav-link text-2xl" data-section="community">Community</a>
+             <a href="https://discord.gg/Fbr3X9Z9jE" target="_blank" class="mt-4 btn btn-primary glow-on-hover">Join Discord</a>
         </div>
     </div>
 
@@ -101,7 +126,7 @@
         <!-- Hero Section -->
         <section id="hero" class="text-center min-h-screen flex flex-col justify-center items-center px-6" style="background: radial-gradient(ellipse at bottom, var(--c-bg-light) 0%, var(--c-bg) 60%);">
              <div class="max-w-4xl mx-auto">
-                <img src="https://placehold.co/150x150/0D0D1A/FFFFFF?text=E" alt="Esperia Logo" class="mx-auto mb-6 rounded-full border-2 border-c-border shadow-lg">
+                <img src="https://placehold.co/150x150/1A1A2E/9333ea?text=E" alt="Esperia Logo" class="mx-auto mb-6 rounded-full border-2 border-c-border shadow-lg">
                 <h1 class="text-5xl md:text-7xl font-title text-white mb-4">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-400">Esperia</span> Private Server
                 </h1>
@@ -109,10 +134,10 @@
                     A safe, inclusive, and engaging gaming community with strong moderation, fostering creativity, collaboration, and a zero-tolerance policy for disruptions.
                 </p>
                 <div class="flex justify-center items-center space-x-4">
-                    <a href="#tutorial" class="bg-gradient-to-r from-c-purple to-c-diamond text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 glow-on-hover">
+                    <a href="#tutorial" class="btn btn-primary glow-on-hover">
                         Tutorial
                     </a>
-                    <a href="#about" class="bg-transparent border-2 border-c-border hover:border-c-purple text-white font-bold py-3 px-8 rounded-lg transition-all glow-on-hover">
+                    <a href="#about" class="btn btn-secondary glow-on-hover">
                         Learn More
                     </a>
                 </div>
@@ -171,11 +196,15 @@
                     </div>
                      <!-- iOS Content -->
                     <div id="ios" class="tab-content hidden">
-                        <p class="text-center">For iOS, you can use the Surge 5 app to connect.</p>
-                        <ol class="list-decimal list-inside space-y-3 text-c-text-secondary text-left max-w-md mx-auto mt-4">
-                            <li>Download <a href="https://apps.apple.com/us/app/surge-5/id1442620678" target="_blank" class="text-c-diamond hover:underline font-semibold">Surge 5</a> from the App Store.</li>
-                            <li>Configure the app to use a custom hosts file pointing to our server IP.</li>
-                            <li>(More detailed instructions coming soon).</li>
+                        <p class="text-center">For iOS, you will need the <a href="https://apps.apple.com/us/app/surge-5/id1442620678" target="_blank" class="text-c-diamond hover:underline font-semibold">Surge 5 App</a> to connect.</p>
+                        <ol class="list-decimal list-inside space-y-3 text-c-text-secondary text-left max-w-lg mx-auto mt-4">
+                            <li>Download "Surge 5" from the App Store.</li>
+                            <li>Press "OK".</li>
+                            <li>Click on "Default.conf".</li>
+                            <li>Click on "IMPORT" part - Download Profile from URL.</li>
+                            <li>Put the URL from your copy when you click the iOS host button above and click "OK" and "Done".</li>
+                            <li>Press "SETUP" and then agree to policy by clicking "OK" and "Allow" for VPN Configuration.</li>
+                            <li>Done, then open Growtopia and Connect!</li>
                         </ol>
                     </div>
                      <!-- macOS Content -->
@@ -233,11 +262,12 @@
                 <h2 class="section-title text-3xl font-title text-white mb-6">Join Our Community</h2>
                 <p class="text-c-text-secondary mb-10">Connect with other players, get support, and stay updated with all the latest news and events!</p>
                  <div class="flex justify-center space-x-4">
-                     <a href="https://discord.gg/Fbr3X9Z9jE" target="_blank" class="bg-gradient-to-r from-c-purple to-c-diamond text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 glow-on-hover">Join Discord</a>
+                     <a href="https://discord.gg/Fbr3X9Z9jE" target="_blank" class="btn btn-primary glow-on-hover text-lg">Join Our Discord Server</a>
                 </div>
                 <div class="mt-12">
                      <div class="bg-c-bg-light border border-c-border rounded-lg p-6 max-w-sm mx-auto text-left">
                         <h4 class="font-bold text-lg text-white mb-4 font-title text-center">Live Server Chat</h4>
+                        <!-- To make this widget work, the server owner must go to Server Settings > Widget in Discord and enable it. -->
                         <iframe src="https://discord.com/widget?id=1039843689473527888&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                      </div>
                 </div>
@@ -317,7 +347,6 @@
         setupCopyButton('copy-hosts-btn-mac', 'hosts-text-mac');
 
         // Auto-sliding features carousel logic
-        const slider = document.getElementById('features-slider');
         const track = document.getElementById('slider-track');
         const progressBar = document.getElementById('progress-bar');
         
@@ -328,38 +357,22 @@
             track.appendChild(clone);
         });
 
-        let animationFrameId;
         const totalWidth = track.scrollWidth / 2;
         const duration = 20000; // 20 seconds for a full loop
-        let startTime = performance.now();
 
         function animateSlider(timestamp) {
-            const elapsedTime = timestamp - startTime;
-            const progress = (elapsedTime % duration) / duration;
+            const elapsedTime = (timestamp || performance.now()) % duration;
+            const progress = elapsedTime / duration;
             const scrollPosition = progress * totalWidth;
             
             track.style.transform = `translateX(-${scrollPosition}px)`;
-            progressBar.style.width = `${progress * 100}%`;
-
-            animationFrameId = requestAnimationFrame(animateSlider);
-        }
-
-        function startAnimation() {
-            startTime = performance.now() - ((parseFloat(track.style.transform.split('(')[1]) || 0) / totalWidth) * duration;
-            if (!animationFrameId) {
-                animationFrameId = requestAnimationFrame(animateSlider);
+            if(progressBar) {
+                progressBar.style.width = `${progress * 100}%`;
             }
+            requestAnimationFrame(animateSlider);
         }
         
-        function stopAnimation() {
-            cancelAnimationFrame(animationFrameId);
-            animationFrameId = null;
-        }
-
-        slider.addEventListener('mouseenter', stopAnimation);
-        slider.addEventListener('mouseleave', startAnimation);
-        
-        startAnimation();
+        requestAnimationFrame(animateSlider);
 
     </script>
 </body>
