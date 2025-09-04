@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esperia | Private Server</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-    <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@900&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@900&display=swap)" rel="stylesheet">
+    <!-- Corrected script and link tags -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <style>
         :root {
             --c-bg: #0D0D1A; /* Dark blue-ish background */
@@ -37,24 +38,32 @@
         }
         .glow-on-hover:hover {
             box-shadow: 0 0 15px var(--c-purple), 0 0 5px var(--c-diamond);
+            transform: translateY(-4px);
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Header -->
-    <header class="bg-c-bg/80 backdrop-blur-sm border-b border-c-border sticky top-0 z-50">
+    <!-- Added 'relative' positioning for the centered nav -->
+    <header class="bg-c-bg/80 backdrop-blur-sm border-b border-c-border sticky top-0 z-50 relative">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-3xl font-title text-white">ESPERIA</a>
-            <div class="hidden md:flex items-center space-x-8 text-c-text-secondary font-semibold">
+            <!-- Logo -->
+            <a href="#hero" class="text-3xl font-title text-white z-10">ESPERIA</a>
+
+            <!-- Centered Navigation Links for Desktop -->
+            <div class="hidden md:flex absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center space-x-8 text-c-text-secondary font-semibold">
                 <a href="#hero" class="nav-link hover:text-c-diamond transition duration-300" data-section="hero">Home</a>
                 <a href="#tutorial" class="nav-link hover:text-c-diamond transition duration-300" data-section="tutorial">Tutorial</a>
                 <a href="#features" class="nav-link hover:text-c-diamond transition duration-300" data-section="features">Features</a>
                 <a href="#about" class="nav-link hover:text-c-diamond transition duration-300" data-section="about">About</a>
                 <a href="#community" class="nav-link hover:text-c-diamond transition duration-300" data-section="community">Community</a>
             </div>
-            <button id="mobile-menu-btn" class="md:hidden text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h16"></path></svg>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white z-10">
+                <!-- Cleaner hamburger icon SVG -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
         </nav>
     </header>
@@ -82,10 +91,10 @@
                     A safe, inclusive, and engaging gaming community with strong moderation, fostering creativity, collaboration, and a zero-tolerance policy for disruptions.
                 </p>
                 <div class="flex justify-center items-center space-x-4">
-                    <a href="#tutorial" class="bg-gradient-to-r from-c-purple to-c-diamond text-white font-bold py-3 px-8 rounded-lg transition-transform transform hover:scale-105 glow-on-hover">
+                    <a href="#tutorial" class="bg-gradient-to-r from-c-purple to-c-diamond text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 glow-on-hover">
                         Tutorial
                     </a>
-                    <a href="#about" class="bg-transparent border-2 border-c-border hover:border-c-purple text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 glow-on-hover">
+                    <a href="#about" class="bg-transparent border-2 border-c-border hover:border-c-purple text-white font-bold py-3 px-8 rounded-lg transition-all glow-on-hover">
                         Learn More
                     </a>
                 </div>
@@ -111,10 +120,11 @@
             <section id="features" class="py-20">
                  <h2 class="section-title text-3xl font-title text-white mb-12">Server Features</h2>
                  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Custom Items</h3><p class="text-c-text-secondary">Explore hundreds of unique items with custom sprites and effects.</p></div>
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">24/7 Uptime</h3><p class="text-c-text-secondary">Our dedicated servers ensure you can play anytime without interruptions.</p></div>
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Active Community</h3><p class="text-c-text-secondary">Join a friendly and growing community of players and staff.</p></div>
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Regular Updates</h3><p class="text-c-text-secondary">We constantly add new content, features, and events to keep the game fresh.</p></div>
+                     <!-- Added glow-on-hover and transition classes -->
+                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Custom Items</h3><p class="text-c-text-secondary">Explore hundreds of unique items with custom sprites and effects.</p></div>
+                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">24/7 Uptime</h3><p class="text-c-text-secondary">Our dedicated servers ensure you can play anytime without interruptions.</p></div>
+                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Active Community</h3><p class="text-c-text-secondary">Join a friendly and growing community of players and staff.</p></div>
+                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Regular Updates</h3><p class="text-c-text-secondary">We constantly add new content, features, and events to keep the game fresh.</p></div>
                  </div>
             </section>
 
@@ -122,10 +132,13 @@
             <section id="about" class="py-20">
                 <h2 class="section-title text-3xl font-title text-white mb-12">About Esperia</h2>
                 <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2"><img src="[https://placehold.co/800x600/1A1A2E/9333ea?text=Esperia+World](https://placehold.co/800x600/1A1A2E/9333ea?text=Esperia+World)" alt="About Esperia" class="rounded-lg shadow-lg border-2 border-c-border"></div>
+                    <div class="md:w-1/2"><img src="https://placehold.co/800x600/1A1A2E/9333ea?text=Esperia+World" alt="About Esperia" class="rounded-lg shadow-lg border-2 border-c-border"></div>
                     <div class="md:w-1/2">
                         <h3 class="text-2xl font-bold text-white mb-4 font-title">The Private Server, Reimagined.</h3>
-                        <p class="text-c-text-secondary leading-relaxed space-y-4"><span>Welcome to Esperia, a thriving community with over 19,000 members. More than just a game, it’s a space where creativity and exploration come to life.</span><span>With a strong moderation and a zero-tolerance policy for disruptive behavior, players can enjoy the game without worry, focusing on building, learning, and connecting with others. The server continues to grow thanks to its dedicated community.</span></p>
+                        <div class="text-c-text-secondary leading-relaxed space-y-4">
+                            <p>Welcome to Esperia, a thriving community with over 19,000 members. More than just a game, it’s a space where creativity and exploration come to life.</p>
+                            <p>With a strong moderation and a zero-tolerance policy for disruptive behavior, players can enjoy the game without worry, focusing on building, learning, and connecting with others. The server continues to grow thanks to its dedicated community.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -135,31 +148,63 @@
                 <h2 class="section-title text-3xl font-title text-white mb-6">Join Our Community</h2>
                 <p class="text-c-text-secondary mb-10">Connect with other players, get support, and stay updated with all the latest news and events!</p>
                  <div class="flex justify-center space-x-4">
-                     <a href="[https://discord.gg/Fbr3X9Z9jE](https://discord.gg/Fbr3X9Z9jE)" target="_blank" class="bg-gradient-to-r from-c-purple to-c-diamond text-white font-bold py-3 px-8 rounded-lg transition-transform transform hover:scale-105 glow-on-hover">Join Discord</a>
+                     <a href="https://discord.gg/Fbr3X9Z9jE" target="_blank" class="bg-gradient-to-r from-c-purple to-c-diamond text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 glow-on-hover">Join Discord</a>
                 </div>
+                <!-- Updated Discord Widget Section -->
                 <div class="mt-12">
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 max-w-sm mx-auto"><h4 class="font-bold text-lg text-white mb-2 font-title">Discord Widget</h4><p class="text-c-text-secondary text-sm">This is where your Discord member list would appear. See comments in the code to learn how to set it up.</p></div>
+                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 max-w-sm mx-auto text-left">
+                        <h4 class="font-bold text-lg text-white mb-4 font-title text-center">Live Server Chat</h4>
+                        <!-- 
+                            To embed your Discord server widget:
+                            1. In Discord, go to your Server Settings > Widget.
+                            2. Make sure 'Enable Server Widget' is checked.
+                            3. Copy the 'Server ID' from that page.
+                            4. Replace 'YOUR_SERVER_ID' in the iframe src below.
+                        -->
+                        <iframe src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                     </div>
                 </div>
             </section>
         </div>
     </main>
 
+    <!-- New Footer Section -->
+    <footer class="border-t border-c-border mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-c-text-secondary">
+            <p>&copy; 2024 Esperia. All Rights Reserved.</p>
+            <p class="text-sm mt-2">Growtopia is a trademark of Ubisoft Entertainment. This private server is not affiliated with Ubisoft Entertainment.</p>
+        </div>
+    </footer>
+
     <script>
+        // Smooth scrolling and active link highlighting
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('header .nav-link, #mobile-menu .nav-link');
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     navLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+                        const linkHref = link.getAttribute('href');
+                        const sectionId = '#' + entry.target.id;
+                        link.classList.toggle('active', linkHref === sectionId);
                     });
                 }
             });
         }, { rootMargin: '-50% 0px -50% 0px' });
+
         sections.forEach(section => observer.observe(section));
+
+        // Mobile menu toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
+        mobileMenuBtn.addEventListener('click', (e) => { 
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden'); 
+        });
+
+        // Close mobile menu when a link is clicked
         document.querySelectorAll('#mobile-menu .nav-link').forEach(link => {
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
