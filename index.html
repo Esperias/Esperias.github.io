@@ -110,6 +110,9 @@
         .dropdown:hover .dropdown-menu {
             display: block;
         }
+        .dropdown-menu {
+            z-index: 100; /* Ensures dropdown is on top */
+        }
         /* FAQ Accordion */
         .faq-question.active + .faq-answer {
             max-height: 200px; /* Adjust as needed */
@@ -143,6 +146,10 @@
             opacity: 0.5;
             cursor: not-allowed;
         }
+        /* Shop search text color fix */
+        #shop-search {
+            color: var(--c-text-primary);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -160,7 +167,7 @@
                     <button class="nav-link hover:text-c-diamond transition duration-300 flex items-center">Info
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="info-dropdown" class="dropdown-menu absolute hidden bg-c-bg-light rounded-md mt-2 w-48 shadow-lg z-50 border border-c-border">
+                    <div id="info-dropdown" class="dropdown-menu absolute hidden bg-c-bg-light rounded-md mt-2 w-48 shadow-lg border border-c-border">
                         <a href="#about" class="block px-4 py-2 text-sm text-c-text-secondary hover:bg-c-border hover:text-white" data-section="about">About & Staff</a>
                         <a href="#events" class="block px-4 py-2 text-sm text-c-text-secondary hover:bg-c-border hover:text-white" data-section="events">Events</a>
                         <a href="#faq" class="block px-4 py-2 text-sm text-c-text-secondary hover:bg-c-border hover:text-white" data-section="faq">FAQ</a>
@@ -212,20 +219,6 @@
                     <a href="#about" class="btn btn-secondary glow-on-hover">
                         Learn More
                     </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Player of the Week Section -->
-        <section id="potw" class="py-20">
-             <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title text-4xl font-title text-white mb-12">Player of the Week</h2>
-                <div class="info-card max-w-2xl mx-auto md:flex items-center gap-8 text-left">
-                    <img src="https://placehold.co/200x200/1A1A2E/FFFFFF?text=Player" alt="Player of the Week" class="rounded-full border-4 border-c-purple mx-auto md:mx-0 mb-6 md:mb-0 w-40 h-40">
-                    <div>
-                        <h3 class="font-bold text-3xl mb-2 text-white font-title text-center md:text-left">PlayerName</h3>
-                        <p class="text-c-text-secondary">"I've been playing on Esperia for over a year now! My favorite thing to do is design fashion worlds and hang out with the friends I've made. The community here is the best."</p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -370,32 +363,44 @@
                 </div>
 
                 <!-- Meet the Staff -->
-                <div>
+                <div class="mb-20">
                     <div class="text-center">
                         <h3 class="text-3xl font-title text-white mb-12">Meet the Staff</h3>
                     </div>
                     <div id="staff-slider" class="slider-container -mx-4">
                         <div id="staff-slider-track" class="slider-track">
-                            <!-- Staff Member Example -->
                             <div class="slider-item w-64 md:w-72 mx-4 flex-shrink-0 info-card text-center">
-                                <img src="https://placehold.co/150x150/1A1A2E/9333ea?text=Staff" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
-                                <h3 class="font-bold text-xl text-white font-title">YourName</h3>
-                                <p class="text-c-purple font-semibold">Founder</p>
-                            </div>
-                            <div class="slider-item w-64 md:w-72 mx-4 flex-shrink-0 info-card text-center">
-                                <img src="https://placehold.co/150x150/1A1A2E/e0e0e0?text=Staff" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
-                                <h3 class="font-bold text-xl text-white font-title">Admin 1</h3>
-                                <p class="text-c-diamond">Administrator</p>
-                            </div>
-                            <div class="slider-item w-64 md:w-72 mx-4 flex-shrink-0 info-card text-center">
-                                <img src="https://placehold.co/150x150/1A1A2E/e0e0e0?text=Staff" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
-                                <h3 class="font-bold text-xl text-white font-title">Mod 1</h3>
-                                <p class="text-c-text-secondary">Moderator</p>
+                                <img src="https://placehold.co/150x150/1A1A2E/9333ea?text=G" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
+                                <h3 class="font-bold text-xl text-white font-title">@Goth</h3>
+                                <p class="text-c-purple font-semibold">Owner</p>
                             </div>
                              <div class="slider-item w-64 md:w-72 mx-4 flex-shrink-0 info-card text-center">
-                                <img src="https://placehold.co/150x150/1A1A2E/e0e0e0?text=Staff" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
-                                <h3 class="font-bold text-xl text-white font-title">Mod 2</h3>
-                                <p class="text-c-text-secondary">Moderator</p>
+                                <img src="https://placehold.co/150x150/1A1A2E/9333ea?text=TV" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
+                                <h3 class="font-bold text-xl text-white font-title">@TVRemote</h3>
+                                <p class="text-c-purple font-semibold">Owner</p>
+                            </div>
+                            <div class="slider-item w-64 md:w-72 mx-4 flex-shrink-0 info-card text-center">
+                                <img src="https://placehold.co/150x150/1A1A2E/22d3ee?text=Dev" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
+                                <h3 class="font-bold text-xl text-white font-title">@DevTester</h3>
+                                <p class="text-c-diamond">Developer</p>
+                            </div>
+                            <div class="slider-item w-64 md:w-72 mx-4 flex-shrink-0 info-card text-center">
+                                <img src="https://placehold.co/150x150/1A1A2E/22d3ee?text=Ari" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
+                                <h3 class="font-bold text-xl text-white font-title">@Ari</h3>
+                                <p class="text-c-diamond">Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Player of the Week Section -->
+                <div id="potw">
+                     <div class="container mx-auto px-6 text-center">
+                        <h2 class="section-title text-4xl font-title text-white mb-12">Player of the Week</h2>
+                        <div class="info-card max-w-2xl mx-auto md:flex items-center gap-8 text-left">
+                            <img src="https://placehold.co/200x200/1A1A2E/FFFFFF?text=Player" alt="Player of the Week" class="rounded-full border-4 border-c-purple mx-auto md:mx-0 mb-6 md:mb-0 w-40 h-40">
+                            <div>
+                                <h3 class="font-bold text-3xl mb-2 text-white font-title text-center md:text-left">PlayerName</h3>
+                                <p class="text-c-text-secondary">"I've been playing on Esperia for over a year now! My favorite thing to do is design fashion worlds and hang out with the friends I've made. The community here is the best."</p>
                             </div>
                         </div>
                     </div>
@@ -466,7 +471,7 @@
                             <svg class="w-6 h-6 text-c-diamond transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <div class="faq-answer text-c-text-secondary">
-                            You can use the `/resetpass` command in-game or contact a staff member on our Discord for assistance with account recovery. Please make sure to provide proof of account ownership.
+                           Direct message a developer on Discord or click 'Forgot Password' in-game and check your email.
                         </div>
                     </div>
                 </div>
@@ -560,10 +565,10 @@
             sections.forEach(section => observer.observe(section));
 
             // Fix for dropdown links not scrolling
-            document.querySelectorAll('#info-dropdown a, #mobile-menu a').forEach(anchor => {
+            document.querySelectorAll('#info-dropdown a, #mobile-menu a, .btn').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
-                    if (href.startsWith('#')) {
+                    if (href && href.startsWith('#')) {
                         e.preventDefault();
                         const targetEl = document.querySelector(href);
                         if(targetEl) {
@@ -616,9 +621,14 @@
                 const track = document.getElementById(trackId);
                 if (!track) return;
 
+                const originalItems = Array.from(track.children).filter(child => !child.classList.contains('clone'));
+                track.innerHTML = '';
+                originalItems.forEach(item => track.appendChild(item));
+
                 const items = Array.from(track.children);
                 items.forEach(item => {
                     const clone = item.cloneNode(true);
+                    clone.classList.add('clone')
                     track.appendChild(clone);
                 });
 
