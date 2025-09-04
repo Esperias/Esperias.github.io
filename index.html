@@ -87,6 +87,25 @@
         .btn-secondary:hover {
             border-color: var(--c-purple);
         }
+        /* Style for new section cards */
+        .info-card {
+            background-color: var(--c-bg-light);
+            border: 1px solid var(--c-border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            border-color: var(--c-purple);
+            transform: translateY(-4px);
+        }
+        /* Gallery styles */
+        .gallery-item img {
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -95,11 +114,14 @@
     <header class="bg-c-bg/80 backdrop-blur-sm border-b border-c-border sticky top-0 z-50 relative">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#hero" class="text-3xl font-title text-white z-10">ESPERIA</a>
-            <div class="hidden md:flex absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center space-x-8 text-c-text-secondary font-semibold">
+            <div class="hidden md:flex absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center space-x-6 text-c-text-secondary font-semibold text-sm">
                 <a href="#hero" class="nav-link hover:text-c-diamond transition duration-300" data-section="hero">Home</a>
                 <a href="#tutorial" class="nav-link hover:text-c-diamond transition duration-300" data-section="tutorial">Tutorial</a>
                 <a href="#features" class="nav-link hover:text-c-diamond transition duration-300" data-section="features">Features</a>
                 <a href="#about" class="nav-link hover:text-c-diamond transition duration-300" data-section="about">About</a>
+                <a href="#rules" class="nav-link hover:text-c-diamond transition duration-300" data-section="rules">Rules</a>
+                <a href="#staff" class="nav-link hover:text-c-diamond transition duration-300" data-section="staff">Staff</a>
+                <a href="#gallery" class="nav-link hover:text-c-diamond transition duration-300" data-section="gallery">Gallery</a>
                 <a href="#community" class="nav-link hover:text-c-diamond transition duration-300" data-section="community">Community</a>
             </div>
             <a href="https://discord.gg/Fbr3X9Z9jE" target="_blank" class="hidden md:block btn btn-primary glow-on-hover text-sm py-2 px-6">Join Discord</a>
@@ -111,12 +133,15 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-c-bg/95 backdrop-blur-lg fixed top-0 left-0 w-full h-screen z-40">
-        <div class="flex flex-col items-center justify-center h-full space-y-8">
-             <a href="#hero" class="nav-link text-2xl" data-section="hero">Home</a>
-             <a href="#tutorial" class="nav-link text-2xl" data-section="tutorial">Tutorial</a>
-             <a href="#features" class="nav-link text-2xl" data-section="features">Features</a>
-             <a href="#about" class="nav-link text-2xl" data-section="about">About</a>
-             <a href="#community" class="nav-link text-2xl" data-section="community">Community</a>
+        <div class="flex flex-col items-center justify-center h-full space-y-6">
+             <a href="#hero" class="nav-link text-xl" data-section="hero">Home</a>
+             <a href="#tutorial" class="nav-link text-xl" data-section="tutorial">Tutorial</a>
+             <a href="#features" class="nav-link text-xl" data-section="features">Features</a>
+             <a href="#about" class="nav-link text-xl" data-section="about">About</a>
+             <a href="#rules" class="nav-link text-xl" data-section="rules">Rules</a>
+             <a href="#staff" class="nav-link text-xl" data-section="staff">Staff</a>
+             <a href="#gallery" class="nav-link text-xl" data-section="gallery">Gallery</a>
+             <a href="#community" class="nav-link text-xl" data-section="community">Community</a>
              <a href="https://discord.gg/Fbr3X9Z9jE" target="_blank" class="mt-4 btn btn-primary glow-on-hover">Join Discord</a>
         </div>
     </div>
@@ -145,13 +170,12 @@
         </section>
 
         <div class="container mx-auto px-6">
-            <!-- Revamped Tutorial Section with Tabs -->
+            <!-- Tutorial Section -->
             <section id="tutorial" class="py-20 md:py-28">
                 <div class="text-center">
                     <h2 class="section-title text-4xl font-title text-white mb-4">How to Play</h2>
                     <p class="text-lg text-c-text-secondary mb-12">Please select your platform to see the instructions!</p>
                 </div>
-
                 <!-- Tab Buttons -->
                 <div id="tab-buttons" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
                     <button class="tab-btn active bg-c-bg-light border border-c-border rounded-lg py-2 px-5 font-semibold" data-target="windows">Windows</button>
@@ -159,7 +183,6 @@
                     <button class="tab-btn bg-c-bg-light border border-c-border rounded-lg py-2 px-5 font-semibold" data-target="ios">iOS</button>
                     <button class="tab-btn bg-c-bg-light border border-c-border rounded-lg py-2 px-5 font-semibold" data-target="mac-os">macOS</button>
                 </div>
-
                 <!-- Tab Content -->
                 <div class="max-w-4xl mx-auto bg-c-bg-light border border-c-border rounded-lg p-8 transition-all duration-300">
                     <!-- Windows Content -->
@@ -228,15 +251,15 @@
                 </div>
             </section>
             
-            <!-- Revamped Server Features Section with Auto-Slider -->
+            <!-- Server Features Section -->
             <section id="features" class="py-20 overflow-hidden relative">
                  <h2 class="section-title text-3xl font-title text-white mb-12">Server Features</h2>
                  <div id="features-slider" class="slider-container -mx-4">
                      <div id="slider-track" class="slider-track">
-                         <div class="slider-item w-72 md:w-80 mx-4 flex-shrink-0 bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Custom Items</h3><p class="text-c-text-secondary">Explore hundreds of unique items with custom sprites and effects.</p></div>
-                         <div class="slider-item w-72 md:w-80 mx-4 flex-shrink-0 bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">24/7 Uptime</h3><p class="text-c-text-secondary">Our dedicated servers ensure you can play anytime without interruptions.</p></div>
-                         <div class="slider-item w-72 md:w-80 mx-4 flex-shrink-0 bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Active Community</h3><p class="text-c-text-secondary">Join a friendly and growing community of players and staff.</p></div>
-                         <div class="slider-item w-72 md:w-80 mx-4 flex-shrink-0 bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Regular Updates</h3><p class="text-c-text-secondary">We constantly add new content, features, and events to keep the game fresh.</p></div>
+                         <div class="slider-item w-72 md:w-80 mx-4 flex-shrink-0 bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Custom Items</h3><p class="text-c-text-secondary">Explore hundreds of unique items with custom sprites and effects.</p></div>
+                         <div class="slider-item w-72 md:w-80 mx-4 flex-shrink-0 bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">24/7 Uptime</h3><p class="text-c-text-secondary">Our dedicated servers ensure you can play anytime without interruptions.</p></div>
+                         <div class="slider-item w-72 md:w-80 mx-4 flex-shrink-0 bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Active Community</h3><p class="text-c-text-secondary">Join a friendly and growing community of players and staff.</p></div>
+                         <div class="slider-item w-72 md:w-80 mx-4 flex-shrink-0 bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Regular Updates</h3><p class="text-c-text-secondary">We constantly add new content, features, and events to keep the game fresh.</p></div>
                      </div>
                  </div>
                  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-1 w-1/2 bg-c-border rounded-full"><div id="progress-bar" class="h-full bg-gradient-to-r from-c-purple to-c-diamond rounded-full"></div></div>
@@ -254,6 +277,67 @@
                             <p>With a strong moderation and a zero-tolerance policy for disruptive behavior, players can enjoy the game without worry, focusing on building, learning, and connecting with others. The server continues to grow thanks to its dedicated community.</p>
                         </div>
                     </div>
+                </div>
+            </section>
+            
+            <!-- NEW: Server Rules Section -->
+            <section id="rules" class="py-20">
+                <div class="text-center">
+                    <h2 class="section-title text-4xl font-title text-white mb-12">Server Rules</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="info-card"><h3 class="font-bold text-xl mb-2 text-white font-title">Be Respectful</h3><p class="text-c-text-secondary">Treat all players and staff with kindness and respect. No harassment, bullying, or hate speech.</p></div>
+                    <div class="info-card"><h3 class="font-bold text-xl mb-2 text-white font-title">No Cheating</h3><p class="text-c-text-secondary">The use of third-party programs, hacks, or exploits is strictly forbidden.</p></div>
+                    <div class="info-card"><h3 class="font-bold text-xl mb-2 text-white font-title">No Scamming</h3><p class="text-c-text-secondary">Do not attempt to deceive or steal from other players. All trades are final.</p></div>
+                    <div class="info-card"><h3 class="font-bold text-xl mb-2 text-white font-title">No Spamming</h3><p class="text-c-text-secondary">Avoid spamming chat with repetitive messages, advertising, or excessive capitalization.</p></div>
+                    <div class="info-card"><h3 class="font-bold text-xl mb-2 text-white font-title">Listen to Staff</h3><p class="text-c-text-secondary">Follow the instructions of server moderators and administrators at all times.</p></div>
+                    <div class="info-card"><h3 class="font-bold text-xl mb-2 text-white font-title">Keep it PG</h3><p class="text-c-text-secondary">Keep conversations and world content appropriate for all ages.</p></div>
+                </div>
+            </section>
+
+            <!-- NEW: Meet the Staff Section -->
+            <section id="staff" class="py-20">
+                <div class="text-center">
+                    <h2 class="section-title text-4xl font-title text-white mb-12">Meet the Staff</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <!-- Staff Member Example -->
+                    <div class="info-card text-center">
+                        <img src="https://placehold.co/150x150/1A1A2E/9333ea?text=Staff" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
+                        <h3 class="font-bold text-xl text-white font-title">YourName</h3>
+                        <p class="text-c-purple font-semibold">Founder</p>
+                    </div>
+                    <!-- Add more staff members by copying the div above -->
+                    <div class="info-card text-center">
+                        <img src="https://placehold.co/150x150/1A1A2E/e0e0e0?text=Staff" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
+                        <h3 class="font-bold text-xl text-white font-title">Admin 1</h3>
+                        <p class="text-c-diamond">Administrator</p>
+                    </div>
+                    <div class="info-card text-center">
+                        <img src="https://placehold.co/150x150/1A1A2E/e0e0e0?text=Staff" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
+                        <h3 class="font-bold text-xl text-white font-title">Mod 1</h3>
+                        <p class="text-c-text-secondary">Moderator</p>
+                    </div>
+                     <div class="info-card text-center">
+                        <img src="https://placehold.co/150x150/1A1A2E/e0e0e0?text=Staff" alt="Staff Member" class="mx-auto mb-4 rounded-full border-2 border-c-border">
+                        <h3 class="font-bold text-xl text-white font-title">Mod 2</h3>
+                        <p class="text-c-text-secondary">Moderator</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NEW: Player Gallery Section -->
+            <section id="gallery" class="py-20">
+                <div class="text-center">
+                    <h2 class="section-title text-4xl font-title text-white mb-12">Player Gallery</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    <div class="gallery-item overflow-hidden rounded-lg border-2 border-c-border"><img src="https://placehold.co/600x400/1A1A2E/e0e0e0?text=Awesome+Build" alt="Gallery image"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg border-2 border-c-border"><img src="https://placehold.co/600x400/1A1A2E/e0e0e0?text=Cool+Event" alt="Gallery image"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg border-2 border-c-border"><img src="https://placehold.co/600x400/1A1A2E/e0e0e0?text=Funny+Moment" alt="Gallery image"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg border-2 border-c-border"><img src="https://placehold.co/600x400/1A1A2E/e0e0e0?text=Group+Photo" alt="Gallery image"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg border-2 border-c-border"><img src="https://placehold.co/600x400/1A1A2E/e0e0e0?text=Rare+Item" alt="Gallery image"></div>
+                    <div class="gallery-item overflow-hidden rounded-lg border-2 border-c-border"><img src="https://placehold.co/600x400/1A1A2E/e0e0e0?text=Art+World" alt="Gallery image"></div>
                 </div>
             </section>
 
