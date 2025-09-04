@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esperia | Private Server</title>
-    <!-- Corrected script and link tags -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --c-bg: #0D0D1A; /* Dark blue-ish background */
-            --c-bg-light: #1A1A2E; /* Lighter card background */
-            --c-border: #2A2A4E; /* Border color */
-            --c-purple: #9333ea; /* Purple 600 */
-            --c-diamond: #22d3ee; /* Cyan 400 */
-            --c-text-primary: #e0e0e0; /* Off-white text */
-            --c-text-secondary: #a0a0b0; /* Lighter gray text */
+            --c-bg: #0D0D1A;
+            --c-bg-light: #1A1A2E;
+            --c-border: #2A2A4E;
+            --c-purple: #9333ea;
+            --c-diamond: #22d3ee;
+            --c-text-primary: #e0e0e0;
+            --c-text-secondary: #a0a0b0;
         }
         html { scroll-behavior: smooth; }
         body {
@@ -40,18 +39,32 @@
             box-shadow: 0 0 15px var(--c-purple), 0 0 5px var(--c-diamond);
             transform: translateY(-4px);
         }
+        /* Styles for the new features slider */
+        .slider-container {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+        }
+        .slider-item {
+            scroll-snap-align: center;
+        }
+        /* Styles for new tutorial tabs */
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background: linear-gradient(to right, var(--c-purple), var(--c-diamond));
+            color: white;
+            box-shadow: 0 0 10px var(--c-purple);
+        }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Header -->
-    <!-- Added 'relative' positioning for the centered nav -->
     <header class="bg-c-bg/80 backdrop-blur-sm border-b border-c-border sticky top-0 z-50 relative">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo -->
             <a href="#hero" class="text-3xl font-title text-white z-10">ESPERIA</a>
-
-            <!-- Centered Navigation Links for Desktop -->
             <div class="hidden md:flex absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center space-x-8 text-c-text-secondary font-semibold">
                 <a href="#hero" class="nav-link hover:text-c-diamond transition duration-300" data-section="hero">Home</a>
                 <a href="#tutorial" class="nav-link hover:text-c-diamond transition duration-300" data-section="tutorial">Tutorial</a>
@@ -59,10 +72,7 @@
                 <a href="#about" class="nav-link hover:text-c-diamond transition duration-300" data-section="about">About</a>
                 <a href="#community" class="nav-link hover:text-c-diamond transition duration-300" data-section="community">Community</a>
             </div>
-            
-            <!-- Mobile Menu Button -->
             <button id="mobile-menu-btn" class="md:hidden text-white z-10">
-                <!-- Cleaner hamburger icon SVG -->
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
         </nav>
@@ -84,8 +94,9 @@
         <!-- Hero Section -->
         <section id="hero" class="text-center min-h-screen flex flex-col justify-center items-center px-6" style="background: radial-gradient(ellipse at bottom, var(--c-bg-light) 0%, var(--c-bg) 60%);">
              <div class="max-w-4xl mx-auto">
+                <img src="https://placehold.co/150x150/0D0D1A/FFFFFF?text=E" alt="Esperia Logo" class="mx-auto mb-6 rounded-full border-2 border-c-border shadow-lg">
                 <h1 class="text-5xl md:text-7xl font-title text-white mb-4">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-c-purple to-c-diamond">Esperia</span> Private Server
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-400">Esperia</span> Private Server
                 </h1>
                 <p class="text-lg md:text-xl text-c-text-secondary max-w-2xl mx-auto mb-8">
                     A safe, inclusive, and engaging gaming community with strong moderation, fostering creativity, collaboration, and a zero-tolerance policy for disruptions.
@@ -102,29 +113,79 @@
         </section>
 
         <div class="container mx-auto px-6">
-            <!-- Tutorial Section -->
-            <section id="tutorial" class="text-center py-20 md:py-28">
-                <h2 class="text-4xl font-title text-white mb-4">How to Play</h2>
-                <p class="text-lg text-c-text-secondary mb-12">Please select the application you want to use!</p>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
-                    <!-- Add your download links in href="#" -->
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M4.63 8.35a.75.75 0 01.7-1.3l2.67.14a.75.75 0 01.69.72v10.18a.75.75 0 01-.69.72l-2.67.14a.75.75 0 01-.7-1.3L4.63 8.35zm3.84 9.15a.75.75 0 00.69-.72V7.22a.75.75 0 00-.69-.72L5.8 6.64a.75.75 0 00-.7 1.3l2.12.11v8.1l-2.12.11a.75.75 0 00.7 1.3l2.67-.14zM10.22 6.5a.75.75 0 01.75-.63h8.28a.75.75 0 010 1.5h-8.28a.75.75 0 01-.75-.87zm0 11a.75.75 0 01.75-.62h8.28a.75.75 0 010 1.5h-8.28a.75.75 0 01-.75-.88zm0-5.5a.75.75 0 01.75-.63h8.28a.75.75 0 010 1.5h-8.28a.75.75 0 01-.75-.87z"/></svg><span class="font-semibold">Android</span></a>
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 9A1.5 1.5 0 013 7.5h18A1.5 1.5 0 0122.5 9v10.5A1.5 1.5 0 0121 21H3A1.5 1.5 0 011.5 19.5V9zm1.5-3A1.5 1.5 0 001.5 7.5v.75A1.5 1.5 0 013 6h18a1.5 1.5 0 011.5 1.5v-.75A1.5 1.5 0 0021 6H3z" clip-rule="evenodd" /></svg><span class="font-semibold">Windows</span></a>
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.723 2.285a.75.75 0 00-1.446 0C8.36 4.634 6.25 7.962 6.25 10.125c0 1.995 1.562 3.625 3.5 3.625s3.5-1.63 3.5-3.625c0-2.163-2.11-5.491-5.027-7.84zM12 15.25a5.125 5.125 0 005.125-5.125c0-2.686-2.4-6.375-5.125-8.82-2.725 2.445-5.125 6.134-5.125 8.82A5.125 5.125 0 0012 15.25zM12 21.75a2.75 2.75 0 000-5.5 2.75 2.75 0 000 5.5z" /></svg><span class="font-semibold">macOS</span></a>
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3A5.25 5.25 0 0012 1.5zm-3.75 5.25v3a3.75 3.75 0 003.75 3.75h3.75a3.75 3.75 0 003.75-3.75v-3a3.75 3.75 0 00-3.75-3.75H8.25z" clip-rule="evenodd" /></svg><span class="font-semibold">iOS</span></a>
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6 text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path d="M3.5 2A1.5 1.5 0 002 3.5v13A1.5 1.5 0 003.5 18h13a1.5 1.5 0 001.5-1.5v-13A1.5 1.5 0 0016.5 2h-13zM12 12a2 2 0 11-4 0 2 2 0 014 0zM7 6a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-5A.5.5 0 017 7V6z" /></svg><span class="font-semibold">Hosts Go</span></a>
+            <!-- Revamped Tutorial Section with Tabs -->
+            <section id="tutorial" class="py-20 md:py-28">
+                <div class="text-center">
+                    <h2 class="section-title text-4xl font-title text-white mb-4">How to Play</h2>
+                    <p class="text-lg text-c-text-secondary mb-12">Please select your platform to see the instructions!</p>
+                </div>
+
+                <!-- Tab Buttons -->
+                <div id="tab-buttons" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                    <button class="tab-btn active bg-c-bg-light border border-c-border rounded-lg py-2 px-5 font-semibold" data-target="windows">Windows</button>
+                    <button class="tab-btn bg-c-bg-light border border-c-border rounded-lg py-2 px-5 font-semibold" data-target="android">Android</button>
+                    <button class="tab-btn bg-c-bg-light border border-c-border rounded-lg py-2 px-5 font-semibold" data-target="ios">iOS</button>
+                    <button class="tab-btn bg-c-bg-light border border-c-border rounded-lg py-2 px-5 font-semibold" data-target="mac-os">macOS</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="max-w-4xl mx-auto bg-c-bg-light border border-c-border rounded-lg p-8 transition-all duration-300">
+                    <!-- Windows Content -->
+                    <div id="windows" class="tab-content">
+                         <div class="grid md:grid-cols-2 gap-8 items-start">
+                            <ol class="list-decimal list-inside space-y-3 text-c-text-secondary text-left">
+                                <li>Press Win+R (Windows Key + R).</li>
+                                <li>Type in <code class="bg-c-bg text-c-text-primary px-2 py-1 rounded">C:\Windows\System32\drivers\etc</code> and press Enter.</li>
+                                <li>Right-click on the "hosts" file and open it with Notepad.</li>
+                                <li>Add the lines from the box on the right to the bottom of the file.</li>
+                                <li>Save the file. You may need administrator permissions.</li>
+                                <li>Open Growtopia and Connect!</li>
+                            </ol>
+                            <div class="bg-c-bg p-4 rounded-lg relative">
+                                <pre id="hosts-text" class="text-c-text-primary text-sm whitespace-pre-wrap">91.134.85.13 www.growtopia1.com
+91.134.85.13 www.growtopia2.com</pre>
+                                <button id="copy-hosts-btn" class="absolute top-2 right-2 bg-c-border hover:bg-c-purple text-white text-xs font-bold py-1 px-2 rounded transition-all">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Android Content -->
+                    <div id="android" class="tab-content hidden">
+                        <p class="mb-4 text-center">We recommend using Hosts Go for the easiest setup.</p>
+                        <ol class="list-decimal list-inside space-y-3 text-c-text-secondary text-left max-w-md mx-auto">
+                            <li>Download and Install <a href="https://www.mediafire.com/file/ctly08te3i8rlwq/%28No_root%29_Hosts_Go_2.1.9_Apkpure.apk/file" target="_blank" class="text-c-diamond hover:underline font-semibold">HostsGo APK</a>.</li>
+                            <li>Open Hosts Go and click on "Hosts Editor".</li>
+                            <li>Click the checkbox on the right, and click "Download Hosts File".</li>
+                            <li>Enter this URL: <code class="bg-c-bg text-c-text-primary px-2 py-1 rounded">https://esperias.github.io/hosts.txt</code></li>
+                            <li>Click "Download and Apply".</li>
+                            <li>Return to the main screen and click "START".</li>
+                            <li>Open Growtopia and connect!</li>
+                        </ol>
+                        <p class="text-sm mt-6 text-center">Alternative apps: <a href="https://www.apkshub.com/app/com.github.xfalcon.vhosts" target="_blank" class="text-c-diamond hover:underline">Virtual Host</a>, <a href="https://android.izzysoft.de/repo/apk/io.github.krlvm.powertunnel.android" target="_blank" class="text-c-diamond hover:underline">PowerTunnel</a>.</p>
+                    </div>
+                     <!-- iOS Content -->
+                    <div id="ios" class="tab-content hidden">
+                        <p class="text-center">For iOS, you can use the Surge 5 app to connect.</p>
+                        <ol class="list-decimal list-inside space-y-3 text-c-text-secondary text-left max-w-md mx-auto mt-4">
+                            <li>Download <a href="https://apps.apple.com/us/app/surge-5/id1442620678" target="_blank" class="text-c-diamond hover:underline font-semibold">Surge 5</a> from the App Store.</li>
+                            <li>Configure the app to use a custom hosts file pointing to our server IP.</li>
+                            <li>(More detailed instructions coming soon).</li>
+                        </ol>
+                    </div>
+                     <!-- macOS Content -->
+                    <div id="mac-os" class="tab-content hidden">
+                        <p class="text-c-text-secondary text-center">Instructions for macOS are similar to Windows. You need to edit your <code class="bg-c-bg text-c-text-primary px-2 py-1 rounded">/etc/hosts</code> file. (More detailed instructions coming soon).</p>
+                    </div>
                 </div>
             </section>
-
-            <!-- Server Features Section -->
-            <section id="features" class="py-20">
+            
+            <!-- Revamped Server Features Section with Slider -->
+            <section id="features" class="py-20 overflow-hidden">
                  <h2 class="section-title text-3xl font-title text-white mb-12">Server Features</h2>
-                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                     <!-- Added glow-on-hover and transition classes -->
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Custom Items</h3><p class="text-c-text-secondary">Explore hundreds of unique items with custom sprites and effects.</p></div>
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">24/7 Uptime</h3><p class="text-c-text-secondary">Our dedicated servers ensure you can play anytime without interruptions.</p></div>
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Active Community</h3><p class="text-c-text-secondary">Join a friendly and growing community of players and staff.</p></div>
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Regular Updates</h3><p class="text-c-text-secondary">We constantly add new content, features, and events to keep the game fresh.</p></div>
+                 <div class="slider-container flex overflow-x-auto gap-8 pb-8 -mx-6 px-6">
+                     <div class="slider-item flex-shrink-0 w-72 md:w-80 bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Custom Items</h3><p class="text-c-text-secondary">Explore hundreds of unique items with custom sprites and effects.</p></div>
+                     <div class="slider-item flex-shrink-0 w-72 md:w-80 bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">24/7 Uptime</h3><p class="text-c-text-secondary">Our dedicated servers ensure you can play anytime without interruptions.</p></div>
+                     <div class="slider-item flex-shrink-0 w-72 md:w-80 bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Active Community</h3><p class="text-c-text-secondary">Join a friendly and growing community of players and staff.</p></div>
+                     <div class="slider-item flex-shrink-0 w-72 md:w-80 bg-c-bg-light border border-c-border rounded-lg p-6 transition-all duration-300 glow-on-hover"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Regular Updates</h3><p class="text-c-text-secondary">We constantly add new content, features, and events to keep the game fresh.</p></div>
                  </div>
             </section>
 
@@ -150,18 +211,10 @@
                  <div class="flex justify-center space-x-4">
                      <a href="https://discord.gg/Fbr3X9Z9jE" target="_blank" class="bg-gradient-to-r from-c-purple to-c-diamond text-white font-bold py-3 px-8 rounded-lg transition-all transform hover:scale-105 glow-on-hover">Join Discord</a>
                 </div>
-                <!-- Updated Discord Widget Section -->
                 <div class="mt-12">
                      <div class="bg-c-bg-light border border-c-border rounded-lg p-6 max-w-sm mx-auto text-left">
                         <h4 class="font-bold text-lg text-white mb-4 font-title text-center">Live Server Chat</h4>
-                        <!-- 
-                            To embed your Discord server widget:
-                            1. In Discord, go to your Server Settings > Widget.
-                            2. Make sure 'Enable Server Widget' is checked.
-                            3. Copy the 'Server ID' from that page.
-                            4. Replace 'YOUR_SERVER_ID' in the iframe src below.
-                        -->
-                        <iframe src="https://discord.com/widget?id=YOUR_SERVER_ID&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                        <iframe src="https://discord.com/widget?id=1039843689473527888&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                      </div>
                 </div>
             </section>
@@ -180,34 +233,70 @@
         // Smooth scrolling and active link highlighting
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('header .nav-link, #mobile-menu .nav-link');
-        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     navLinks.forEach(link => {
-                        const linkHref = link.getAttribute('href');
-                        const sectionId = '#' + entry.target.id;
-                        link.classList.toggle('active', linkHref === sectionId);
+                        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
                     });
                 }
             });
         }, { rootMargin: '-50% 0px -50% 0px' });
-
         sections.forEach(section => observer.observe(section));
 
         // Mobile menu toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-
-        mobileMenuBtn.addEventListener('click', (e) => { 
-            e.stopPropagation();
-            mobileMenu.classList.toggle('hidden'); 
-        });
-
-        // Close mobile menu when a link is clicked
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         document.querySelectorAll('#mobile-menu .nav-link').forEach(link => {
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
+        
+        // Tutorial Tabs Logic
+        const tabContainer = document.getElementById('tab-buttons');
+        const tabButtons = tabContainer.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabContainer.addEventListener('click', (e) => {
+            const clickedButton = e.target.closest('.tab-btn');
+            if (!clickedButton) return;
+
+            const targetId = clickedButton.dataset.target;
+            
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            clickedButton.classList.add('active');
+
+            tabContents.forEach(content => {
+                if (content.id === targetId) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        });
+
+        // Copy to clipboard logic for Windows hosts file
+        const copyBtn = document.getElementById('copy-hosts-btn');
+        const hostsText = document.getElementById('hosts-text').innerText;
+        copyBtn.addEventListener('click', () => {
+             // Create a temporary textarea to hold the text
+            const textArea = document.createElement('textarea');
+            textArea.value = hostsText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                // Use the older execCommand for better iframe compatibility
+                document.execCommand('copy');
+                copyBtn.innerText = 'Copied!';
+                setTimeout(() => { copyBtn.innerText = 'Copy'; }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                copyBtn.innerText = 'Error';
+            }
+            document.body.removeChild(textArea);
+        });
+
     </script>
 </body>
 </html>
+
