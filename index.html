@@ -154,12 +154,16 @@
         #shop-search {
             color: var(--c-text-primary);
         }
+        /* Header visibility on scroll */
+        header.hide-header {
+            transform: translateY(-100%);
+        }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Header -->
-    <header class="bg-c-bg/80 backdrop-blur-sm border-b border-c-border sticky top-0 z-50 relative">
+    <header id="main-header" class="bg-c-bg/80 backdrop-blur-sm border-b border-c-border fixed top-0 left-0 right-0 z-50 transition-transform duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#hero" class="text-3xl font-title text-white z-10">ESPERIA</a>
             <div class="hidden md:flex absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center space-x-6 text-c-text-secondary font-semibold text-sm">
@@ -205,9 +209,9 @@
     </div>
 
     <!-- Main Content -->
-    <main class="relative z-10">
+    <main>
         <!-- Hero Section -->
-        <section id="hero" class="text-center min-h-screen flex flex-col justify-center items-center px-6" style="background: radial-gradient(ellipse at bottom, var(--c-bg-light) 0%, var(--c-bg) 60%);">
+        <section id="hero" class="pt-24 text-center min-h-screen flex flex-col justify-center items-center px-6" style="background: radial-gradient(ellipse at bottom, var(--c-bg-light) 0%, var(--c-bg) 60%);">
              <div class="max-w-4xl mx-auto">
                 <img src="https://placehold.co/150x150/1A1A2E/9333ea?text=E" alt="Esperia Logo" class="mx-auto mb-6 rounded-full border-2 border-c-border shadow-lg">
                 <h1 class="text-5xl md:text-7xl font-title text-white mb-4">
@@ -255,9 +259,11 @@
                                 <li>Open Growtopia and Connect!</li>
                             </ol>
                             <div class="bg-c-bg p-4 rounded-lg relative">
-                                <pre id="hosts-text" class="text-c-text-primary text-sm whitespace-pre-wrap">91.134.85.13 www.growtopia1.com
+                                <pre id="hosts-text-windows" class="text-c-text-primary text-sm whitespace-pre-wrap">91.134.85.13 growtopia1.com
+91.134.85.13 growtopia2.com
+91.134.85.13 www.growtopia1.com
 91.134.85.13 www.growtopia2.com</pre>
-                                <button id="copy-hosts-btn" class="absolute top-2 right-2 bg-c-border hover:bg-c-purple text-white text-xs font-bold py-1 px-2 rounded transition-all">Copy</button>
+                                <button id="copy-hosts-btn-windows" class="absolute top-2 right-2 bg-c-border hover:bg-c-purple text-white text-xs font-bold py-1 px-2 rounded transition-all">Copy</button>
                             </div>
                         </div>
                     </div>
@@ -273,7 +279,16 @@
                             <li>Return to the main screen and click "START".</li>
                             <li>Open Growtopia and connect!</li>
                         </ol>
-                        <p class="text-sm mt-6 text-center">Alternative apps: <a href="https://www.apkshub.com/app/com.github.xfalcon.vhosts" target="_blank" class="text-c-diamond hover:underline">Virtual Host</a>, <a href="https://android.izzysoft.de/repo/apk/io.github.krlvm.powertunnel.android" target="_blank" class="text-c-diamond hover:underline">PowerTunnel</a>.</p>
+                        <div class="text-sm mt-6 text-center">
+                          <p>Alternative apps: <a href="https://www.apkshub.com/app/com.github.xfalcon.vhosts" target="_blank" class="text-c-diamond hover:underline">Virtual Host</a>, <a href="https://github.com/krlvm/PowerTunnel-Android/releases/download/v2.6.3/PowerTunnel.apk" target="_blank" class="text-c-diamond hover:underline">PowerTunnel</a>.</p>
+                            <div class="bg-c-bg p-4 rounded-lg relative max-w-md mx-auto mt-4">
+                                <pre id="hosts-text-powertunnel" class="text-c-text-primary text-sm whitespace-pre-wrap text-left">91.134.85.13 growtopia1.com
+91.134.85.13 growtopia2.com
+91.134.85.13 www.growtopia1.com
+91.134.85.13 www.growtopia2.com</pre>
+                                <button id="copy-hosts-btn-powertunnel" class="absolute top-2 right-2 bg-c-border hover:bg-c-purple text-white text-xs font-bold py-1 px-2 rounded transition-all">Copy</button>
+                            </div>
+                        </div>
                     </div>
                      <!-- iOS Content -->
                     <div id="ios" class="tutorial-tab-content hidden">
@@ -283,10 +298,24 @@
                             <li>Press "OK".</li>
                             <li>Click on "Default.conf".</li>
                             <li>Click on "IMPORT" part - Download Profile from URL.</li>
-                            <li>Put the URL from your copy when you click the iOS host button above and click "OK" and "Done".</li>
+                            <li>Paste the host text (copied from the box below) into the URL field and click "OK" and "Done".</li>
                             <li>Press "SETUP" and then agree to policy by clicking "OK" and "Allow" for VPN Configuration.</li>
                             <li>Done, then open Growtopia and Connect!</li>
                         </ol>
+                        <div class="bg-c-bg p-4 rounded-lg relative max-w-lg mx-auto mt-4">
+                            <pre id="hosts-text-ios" class="text-c-text-primary text-sm whitespace-pre-wrap text-left">[General]
+bypass-system = true
+
+[Rule]
+FINAL,DIRECT
+
+[Host]
+growtopia1.com = 91.134.85.13
+growtopia2.com = 91.134.85.13
+www.growtopia1.com = 91.134.85.13
+www.growtopia2.com = 91.134.85.13</pre>
+                            <button id="copy-hosts-btn-ios" class="absolute top-2 right-2 bg-c-border hover:bg-c-purple text-white text-xs font-bold py-1 px-2 rounded transition-all">Copy</button>
+                        </div>
                     </div>
                      <!-- macOS Content -->
                     <div id="mac-os" class="tutorial-tab-content hidden">
@@ -300,7 +329,9 @@
                                 <li>Open Growtopia and Connect!</li>
                             </ol>
                             <div class="bg-c-bg p-4 rounded-lg relative">
-                                <pre id="hosts-text-mac" class="text-c-text-primary text-sm whitespace-pre-wrap">91.134.85.13 www.growtopia1.com
+                                <pre id="hosts-text-mac" class="text-c-text-primary text-sm whitespace-pre-wrap">91.134.85.13 growtopia1.com
+91.134.85.13 growtopia2.com
+91.134.85.13 www.growtopia1.com
 91.134.85.13 www.growtopia2.com</pre>
                                 <button id="copy-hosts-btn-mac" class="absolute top-2 right-2 bg-c-border hover:bg-c-purple text-white text-xs font-bold py-1 px-2 rounded transition-all">Copy</button>
                             </div>
@@ -542,6 +573,22 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
+            // --- HEADER HIDE/SHOW ON SCROLL ---
+            const header = document.getElementById('main-header');
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > header.offsetHeight) {
+                    // Downscroll
+                    header.classList.add('hide-header');
+                } else {
+                    // Upscroll
+                    header.classList.remove('hide-header');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+            }, false);
+
+
             // --- SMOOTH SCROLL & ACTIVE LINK ---
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('header .nav-link, #mobile-menu .nav-link, .dropdown-menu a');
@@ -613,8 +660,10 @@
                     }).catch(err => console.error('Failed to copy: ', err));
                 });
             }
-            setupCopyButton('copy-hosts-btn', 'hosts-text');
+            setupCopyButton('copy-hosts-btn-windows', 'hosts-text-windows');
             setupCopyButton('copy-hosts-btn-mac', 'hosts-text-mac');
+            setupCopyButton('copy-hosts-btn-ios', 'hosts-text-ios');
+            setupCopyButton('copy-hosts-btn-powertunnel', 'hosts-text-powertunnel');
 
 
             // --- INFINITE SLIDERS ---
@@ -671,12 +720,12 @@
             const allShopItems = [
                 // ROLES - Updated Prices
                 { id: 1, category: 'roles', name: 'Overlord Role', price: 3.50, desc: 'The ultimate prestige. All perks included.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Overlord', priceId: 'price_1S3YyRR4z9o9kMEFsfhSgqxW' },
-                { id: 2, category: 'roles', name: 'Warlord Role', price: 7.50, desc: 'A role for the mighty warriors of Esperia.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Warlord', priceId: 'price_REPLACE_ME' },
-                { id: 3, category: 'roles', name: 'Highborn Role', price: 15.00, desc: 'Join the elite with this noble rank.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Highborn', priceId: 'price_REPLACE_ME' },
-                { id: 4, category: 'roles', name: 'Ascendant Role', price: 25.00, desc: 'Rise above the rest with powerful abilities.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Ascendant', priceId: 'price_REPLACE_ME' },
-                { id: 5, category: 'roles', name: 'Mythic Role', price: 39.99, desc: 'A legendary role for dedicated players.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Mythic', priceId: 'price_REPLACE_ME' },
-                { id: 6, category: 'roles', name: 'Celestial Role', price: 79.99, desc: 'A heavenly rank with unique cosmetic perks.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Celestial', priceId: 'price_REPLACE_ME' },
-                { id: 7, category: 'roles', name: 'Primarch Role', price: 120.99, desc: 'A great starter rank to show your support.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Primarch', priceId: 'price_REPLACE_ME' },
+                { id: 2, category: 'roles', name: 'Warlord Role', price: 7.50, desc: 'A role for the mighty warriors of Esperia.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Warlord', priceId: 'price_1S3ZByR4z9o9kMEFLuvjDFkJ' },
+                { id: 3, category: 'roles', name: 'Highborn Role', price: 15.00, desc: 'Join the elite with this noble rank.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Highborn', priceId: 'price_1S3ZCxR4z9o9kMEFZo7hSHrp' },
+                { id: 4, category: 'roles', name: 'Ascendant Role', price: 25.00, desc: 'Rise above the rest with powerful abilities.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Ascendant', priceId: 'price_1S3ZE1R4z9o9kMEFsEBNosWX' },
+                { id: 5, category: 'roles', name: 'Mythic Role', price: 39.99, desc: 'A legendary role for dedicated players.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Mythic', priceId: 'price_1S3ZEzR4z9o9kMEFl9GoObmO' },
+                { id: 6, category: 'roles', name: 'Celestial Role', price: 79.99, desc: 'A heavenly rank with unique cosmetic perks.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Celestial', priceId: 'price_1S3ZFNR4z9o9kMEFGFbl3WVK' },
+                { id: 7, category: 'roles', name: 'Primarch Role', price: 120.99, desc: 'A great starter rank to show your support.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Primarch', priceId: 'price_1S3ZFpR4z9o9kMEFv4AFDILR' },
 
                 // ITEMS
                 { id: 21, category: 'items', name: 'Custom Item Token', price: 25.00, desc: 'Redeem to create your own custom item with our staff.', img: 'https://placehold.co/400x250/1A1A2E/e0e0e0?text=Custom+Token', priceId: 'price_REPLACE_ME' },
@@ -804,3 +853,4 @@
     </script>
 </body>
 </html>
+
