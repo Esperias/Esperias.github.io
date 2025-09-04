@@ -216,7 +216,7 @@
         <!-- Hero Section -->
         <section id="hero" class="pt-24 text-center min-h-screen flex flex-col justify-center items-center px-6" style="background: radial-gradient(ellipse at bottom, var(--c-bg-light) 0%, var(--c-bg) 60%);">
              <div class="max-w-4xl mx-auto">
-                <img src="https://placehold.co/150x150/1A1A2E/9333ea?text=E" alt="Esperia Logo" class="mx-auto mb-6 rounded-full border-2 border-c-border shadow-lg">
+                <img src="images/esperia(1).png" alt="Esperia Logo" class="mx-auto mb-6 rounded-full border-2 border-c-border shadow-lg w-40 h-40 object-cover">
                 <h1 class="text-5xl md:text-7xl font-title text-white mb-4">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-400">Esperia</span> Private Server
                 </h1>
@@ -722,13 +722,13 @@ www.growtopia2.com = 91.134.85.13</pre>
             // --- DYNAMIC SHOP LOGIC ---
             const allShopItems = [
                 // ROLES - Updated Prices
-                { id: 1, category: 'roles', name: 'Overlord Role', price: 3.50, desc: 'The ultimate prestige. All perks included.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Overlord', priceId: 'price_1S3YyRR4z9o9kMEFsfhSgqxW' },
-                { id: 2, category: 'roles', name: 'Warlord Role', price: 7.50, desc: 'A role for the mighty warriors of Esperia.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Warlord', priceId: 'price_1S3ZByR4z9o9kMEFLuvjDFkJ' },
-                { id: 3, category: 'roles', name: 'Highborn Role', price: 15.00, desc: 'Join the elite with this noble rank.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Highborn', priceId: 'price_1S3ZCxR4z9o9kMEFZo7hSHrp' },
-                { id: 4, category: 'roles', name: 'Ascendant Role', price: 25.00, desc: 'Rise above the rest with powerful abilities.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Ascendant', priceId: 'price_1S3ZE1R4z9o9kMEFsEBNosWX' },
-                { id: 5, category: 'roles', name: 'Mythic Role', price: 39.99, desc: 'A legendary role for dedicated players.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Mythic', priceId: 'price_1S3ZEzR4z9o9kMEFl9GoObmO' },
-                { id: 6, category: 'roles', name: 'Celestial Role', price: 79.99, desc: 'A heavenly rank with unique cosmetic perks.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Celestial', priceId: 'price_1S3ZFNR4z9o9kMEFGFbl3WVK' },
-                { id: 7, category: 'roles', name: 'Primarch Role', price: 120.99, desc: 'A great starter rank to show your support.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Primarch', priceId: 'price_1S3ZFpR4z9o9kMEFv4AFDILR' },
+                { id: 1, category: 'roles', name: 'Overlord Role', price: 3.50, desc: 'The ultimate prestige. All perks included.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Overlord', priceId: 'price_REPLACE_ME' },
+                { id: 2, category: 'roles', name: 'Warlord Role', price: 7.50, desc: 'A role for the mighty warriors of Esperia.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Warlord', priceId: 'price_REPLACE_ME' },
+                { id: 3, category: 'roles', name: 'Highborn Role', price: 15.00, desc: 'Join the elite with this noble rank.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Highborn', priceId: 'price_REPLACE_ME' },
+                { id: 4, category: 'roles', name: 'Ascendant Role', price: 25.00, desc: 'Rise above the rest with powerful abilities.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Ascendant', priceId: 'price_REPLACE_ME' },
+                { id: 5, category: 'roles', name: 'Mythic Role', price: 39.99, desc: 'A legendary role for dedicated players.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Mythic', priceId: 'price_REPLACE_ME' },
+                { id: 6, category: 'roles', name: 'Celestial Role', price: 79.99, desc: 'A heavenly rank with unique cosmetic perks.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Celestial', priceId: 'price_REPLACE_ME' },
+                { id: 7, category: 'roles', name: 'Primarch Role', price: 120.99, desc: 'A great starter rank to show your support.', img: 'https://placehold.co/400x250/1A1A2E/9333ea?text=Primarch', priceId: 'price_REPLACE_ME' },
 
                 // ITEMS
                 { id: 21, category: 'items', name: 'Custom Item Token', price: 25.00, desc: 'Redeem to create your own custom item with our staff.', img: 'https://placehold.co/400x250/1A1A2E/e0e0e0?text=Custom+Token', priceId: 'price_REPLACE_ME' },
@@ -831,6 +831,14 @@ www.growtopia2.com = 91.134.85.13</pre>
                         buyButton.innerText = 'Buy Now';
                     }
                 }
+            });
+
+            // This event listener resets the button text when the page is shown again (e.g., after hitting 'back')
+            window.addEventListener('pageshow', () => {
+                document.querySelectorAll('.buy-btn:disabled').forEach(button => {
+                    button.disabled = false;
+                    button.innerText = 'Buy Now';
+                });
             });
 
             shopTabContainer.addEventListener('click', (e) => {
