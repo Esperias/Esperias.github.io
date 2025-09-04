@@ -10,13 +10,13 @@
     <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@900&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@900&display=swap)" rel="stylesheet">
     <style>
         :root {
-            --c-bg: #111111;
-            --c-bg-light: #181818;
-            --c-border: #27272a;
-            --c-accent: #A78BFA; /* Violet 400 */
-            --c-accent-dark: #8B5CF6; /* Violet 500 */
-            --c-text-primary: #e5e7eb; /* Gray 200 */
-            --c-text-secondary: #9ca3af; /* Gray 400 */
+            --c-bg: #0D0D1A; /* Dark blue-ish background */
+            --c-bg-light: #1A1A2E; /* Lighter card background */
+            --c-border: #2A2A4E; /* Border color */
+            --c-purple: #9333ea; /* Purple 600 */
+            --c-diamond: #22d3ee; /* Cyan 400 */
+            --c-text-primary: #e0e0e0; /* Off-white text */
+            --c-text-secondary: #a0a0b0; /* Lighter gray text */
         }
         html { scroll-behavior: smooth; }
         body {
@@ -25,26 +25,33 @@
             color: var(--c-text-primary);
         }
         .font-title { font-family: 'Orbitron', sans-serif; }
-        .nav-link.active { color: var(--c-accent); }
+        .nav-link.active { 
+            color: var(--c-diamond);
+            text-shadow: 0 0 8px var(--c-diamond);
+        }
         .section-title {
-            border-bottom: 2px solid var(--c-accent);
+            border-image: linear-gradient(to right, var(--c-purple), var(--c-diamond)) 1;
+            border-bottom: 3px solid;
             padding-bottom: 0.5rem;
             display: inline-block;
+        }
+        .glow-on-hover:hover {
+            box-shadow: 0 0 15px var(--c-purple), 0 0 5px var(--c-diamond);
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Header -->
-    <header class="bg-c-bg-light/80 backdrop-blur-sm border-b border-c-border sticky top-0 z-50">
+    <header class="bg-c-bg/80 backdrop-blur-sm border-b border-c-border sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#hero" class="text-3xl font-title text-white">ESPERIA</a>
-            <div class="hidden md:flex items-center space-x-8 text-var(--c-text-secondary) font-semibold">
-                <a href="#hero" class="nav-link hover:text-c-accent transition duration-300" data-section="hero">Home</a>
-                <a href="#tutorial" class="nav-link hover:text-c-accent transition duration-300" data-section="tutorial">Tutorial</a>
-                <a href="#features" class="nav-link hover:text-c-accent transition duration-300" data-section="features">Features</a>
-                <a href="#about" class="nav-link hover:text-c-accent transition duration-300" data-section="about">About</a>
-                <a href="#community" class="nav-link hover:text-c-accent transition duration-300" data-section="community">Community</a>
+            <div class="hidden md:flex items-center space-x-8 text-c-text-secondary font-semibold">
+                <a href="#hero" class="nav-link hover:text-c-diamond transition duration-300" data-section="hero">Home</a>
+                <a href="#tutorial" class="nav-link hover:text-c-diamond transition duration-300" data-section="tutorial">Tutorial</a>
+                <a href="#features" class="nav-link hover:text-c-diamond transition duration-300" data-section="features">Features</a>
+                <a href="#about" class="nav-link hover:text-c-diamond transition duration-300" data-section="about">About</a>
+                <a href="#community" class="nav-link hover:text-c-diamond transition duration-300" data-section="community">Community</a>
             </div>
             <button id="mobile-menu-btn" class="md:hidden text-white">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h16"></path></svg>
@@ -53,7 +60,7 @@
     </header>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-c-bg-light/95 backdrop-blur-lg fixed top-0 left-0 w-full h-screen z-40">
+    <div id="mobile-menu" class="hidden md:hidden bg-c-bg/95 backdrop-blur-lg fixed top-0 left-0 w-full h-screen z-40">
         <div class="flex flex-col items-center justify-center h-full space-y-8">
              <a href="#hero" class="nav-link text-2xl" data-section="hero">Home</a>
              <a href="#tutorial" class="nav-link text-2xl" data-section="tutorial">Tutorial</a>
@@ -66,21 +73,19 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="text-center min-h-screen flex flex-col justify-center items-center px-6">
+        <section id="hero" class="text-center min-h-screen flex flex-col justify-center items-center px-6" style="background: radial-gradient(ellipse at bottom, var(--c-bg-light) 0%, var(--c-bg) 60%);">
              <div class="max-w-4xl mx-auto">
-                <!-- Optional: Add your server logo here -->
-                <!-- <img src="your-logo.png" alt="Esperia Logo" class="w-24 h-24 mx-auto mb-6"> -->
                 <h1 class="text-5xl md:text-7xl font-title text-white mb-4">
-                    <span class="text-c-accent">Esperia</span> Private Server
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-c-purple to-c-diamond">Esperia</span> Private Server
                 </h1>
                 <p class="text-lg md:text-xl text-c-text-secondary max-w-2xl mx-auto mb-8">
                     A safe, inclusive, and engaging gaming community with strong moderation, fostering creativity, collaboration, and a zero-tolerance policy for disruptions.
                 </p>
                 <div class="flex justify-center items-center space-x-4">
-                    <a href="#tutorial" class="bg-c-accent hover:bg-c-accent-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                    <a href="#tutorial" class="bg-gradient-to-r from-c-purple to-c-diamond text-white font-bold py-3 px-8 rounded-lg transition-transform transform hover:scale-105 glow-on-hover">
                         Tutorial
                     </a>
-                    <a href="#about" class="bg-transparent border-2 border-c-border hover:border-c-accent text-white font-bold py-3 px-8 rounded-lg transition duration-300">
+                    <a href="#about" class="bg-transparent border-2 border-c-border hover:border-c-purple text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 glow-on-hover">
                         Learn More
                     </a>
                 </div>
@@ -94,11 +99,11 @@
                 <p class="text-lg text-c-text-secondary mb-12">Please select the application you want to use!</p>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
                     <!-- Add your download links in href="#" -->
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 hover:border-c-accent hover:bg-gray-800 transition duration-300"><svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M4.63 8.35a.75.75 0 01.7-1.3l2.67.14a.75.75 0 01.69.72v10.18a.75.75 0 01-.69.72l-2.67.14a.75.75 0 01-.7-1.3L4.63 8.35zm3.84 9.15a.75.75 0 00.69-.72V7.22a.75.75 0 00-.69-.72L5.8 6.64a.75.75 0 00-.7 1.3l2.12.11v8.1l-2.12.11a.75.75 0 00.7 1.3l2.67-.14zM10.22 6.5a.75.75 0 01.75-.63h8.28a.75.75 0 010 1.5h-8.28a.75.75 0 01-.75-.87zm0 11a.75.75 0 01.75-.62h8.28a.75.75 0 010 1.5h-8.28a.75.75 0 01-.75-.88zm0-5.5a.75.75 0 01.75-.63h8.28a.75.75 0 010 1.5h-8.28a.75.75 0 01-.75-.87z"/></svg><span class="font-semibold">Android</span></a>
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 hover:border-c-accent hover:bg-gray-800 transition duration-300"><svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 9A1.5 1.5 0 013 7.5h18A1.5 1.5 0 0122.5 9v10.5A1.5 1.5 0 0121 21H3A1.5 1.5 0 011.5 19.5V9zm1.5-3A1.5 1.5 0 001.5 7.5v.75A1.5 1.5 0 013 6h18a1.5 1.5 0 011.5 1.5v-.75A1.5 1.5 0 0021 6H3z" clip-rule="evenodd" /></svg><span class="font-semibold">Windows</span></a>
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 hover:border-c-accent hover:bg-gray-800 transition duration-300"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.723 2.285a.75.75 0 00-1.446 0C8.36 4.634 6.25 7.962 6.25 10.125c0 1.995 1.562 3.625 3.5 3.625s3.5-1.63 3.5-3.625c0-2.163-2.11-5.491-5.027-7.84zM12 15.25a5.125 5.125 0 005.125-5.125c0-2.686-2.4-6.375-5.125-8.82-2.725 2.445-5.125 6.134-5.125 8.82A5.125 5.125 0 0012 15.25zM12 21.75a2.75 2.75 0 000-5.5 2.75 2.75 0 000 5.5z" /></svg><span class="font-semibold">macOS</span></a>
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 hover:border-c-accent hover:bg-gray-800 transition duration-300"><svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3A5.25 5.25 0 0012 1.5zm-3.75 5.25v3a3.75 3.75 0 003.75 3.75h3.75a3.75 3.75 0 003.75-3.75v-3a3.75 3.75 0 00-3.75-3.75H8.25z" clip-rule="evenodd" /></svg><span class="font-semibold">iOS</span></a>
-                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 hover:border-c-accent hover:bg-gray-800 transition duration-300"><svg class="w-6 h-6 text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path d="M3.5 2A1.5 1.5 0 002 3.5v13A1.5 1.5 0 003.5 18h13a1.5 1.5 0 001.5-1.5v-13A1.5 1.5 0 0016.5 2h-13zM12 12a2 2 0 11-4 0 2 2 0 014 0zM7 6a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-5A.5.5 0 017 7V6z" /></svg><span class="font-semibold">Hosts Go</span></a>
+                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M4.63 8.35a.75.75 0 01.7-1.3l2.67.14a.75.75 0 01.69.72v10.18a.75.75 0 01-.69.72l-2.67.14a.75.75 0 01-.7-1.3L4.63 8.35zm3.84 9.15a.75.75 0 00.69-.72V7.22a.75.75 0 00-.69-.72L5.8 6.64a.75.75 0 00-.7 1.3l2.12.11v8.1l-2.12.11a.75.75 0 00.7 1.3l2.67-.14zM10.22 6.5a.75.75 0 01.75-.63h8.28a.75.75 0 010 1.5h-8.28a.75.75 0 01-.75-.87zm0 11a.75.75 0 01.75-.62h8.28a.75.75 0 010 1.5h-8.28a.75.75 0 01-.75-.88zm0-5.5a.75.75 0 01.75-.63h8.28a.75.75 0 010 1.5h-8.28a.75.75 0 01-.75-.87z"/></svg><span class="font-semibold">Android</span></a>
+                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 9A1.5 1.5 0 013 7.5h18A1.5 1.5 0 0122.5 9v10.5A1.5 1.5 0 0121 21H3A1.5 1.5 0 011.5 19.5V9zm1.5-3A1.5 1.5 0 001.5 7.5v.75A1.5 1.5 0 013 6h18a1.5 1.5 0 011.5 1.5v-.75A1.5 1.5 0 0021 6H3z" clip-rule="evenodd" /></svg><span class="font-semibold">Windows</span></a>
+                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.723 2.285a.75.75 0 00-1.446 0C8.36 4.634 6.25 7.962 6.25 10.125c0 1.995 1.562 3.625 3.5 3.625s3.5-1.63 3.5-3.625c0-2.163-2.11-5.491-5.027-7.84zM12 15.25a5.125 5.125 0 005.125-5.125c0-2.686-2.4-6.375-5.125-8.82-2.725 2.445-5.125 6.134-5.125 8.82A5.125 5.125 0 0012 15.25zM12 21.75a2.75 2.75 0 000-5.5 2.75 2.75 0 000 5.5z" /></svg><span class="font-semibold">macOS</span></a>
+                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3A5.25 5.25 0 0012 1.5zm-3.75 5.25v3a3.75 3.75 0 003.75 3.75h3.75a3.75 3.75 0 003.75-3.75v-3a3.75 3.75 0 00-3.75-3.75H8.25z" clip-rule="evenodd" /></svg><span class="font-semibold">iOS</span></a>
+                    <a href="#" class="bg-c-bg-light border border-c-border rounded-lg p-4 flex items-center justify-center space-x-3 transition-all duration-300 glow-on-hover"><svg class="w-6 h-6 text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path d="M3.5 2A1.5 1.5 0 002 3.5v13A1.5 1.5 0 003.5 18h13a1.5 1.5 0 001.5-1.5v-13A1.5 1.5 0 0016.5 2h-13zM12 12a2 2 0 11-4 0 2 2 0 014 0zM7 6a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-5A.5.5 0 017 7V6z" /></svg><span class="font-semibold">Hosts Go</span></a>
                 </div>
             </section>
 
@@ -106,10 +111,10 @@
             <section id="features" class="py-20">
                  <h2 class="section-title text-3xl font-title text-white mb-12">Server Features</h2>
                  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Custom Items</h3><p class="text-c-text-secondary">Explore hundreds of unique items with custom sprites and effects.</p></div>
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">24/7 Uptime</h3><p class="text-c-text-secondary">Our dedicated servers ensure you can play anytime without interruptions.</p></div>
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Active Community</h3><p class="text-c-text-secondary">Join a friendly and growing community of players and staff.</p></div>
-                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Regular Updates</h3><p class="text-c-text-secondary">We constantly add new content, features, and events to keep the game fresh.</p></div>
+                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Custom Items</h3><p class="text-c-text-secondary">Explore hundreds of unique items with custom sprites and effects.</p></div>
+                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">24/7 Uptime</h3><p class="text-c-text-secondary">Our dedicated servers ensure you can play anytime without interruptions.</p></div>
+                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Active Community</h3><p class="text-c-text-secondary">Join a friendly and growing community of players and staff.</p></div>
+                     <div class="bg-c-bg-light border border-c-border rounded-lg p-6"><svg class="w-8 h-8 text-c-purple mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg><h3 class="font-bold text-xl mb-2 text-white font-title">Regular Updates</h3><p class="text-c-text-secondary">We constantly add new content, features, and events to keep the game fresh.</p></div>
                  </div>
             </section>
 
@@ -117,7 +122,7 @@
             <section id="about" class="py-20">
                 <h2 class="section-title text-3xl font-title text-white mb-12">About Esperia</h2>
                 <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2"><img src="[https://placehold.co/800x600/181818/A78BFA?text=Esperia+World](https://placehold.co/800x600/181818/A78BFA?text=Esperia+World)" alt="About Esperia" class="rounded-lg shadow-lg"></div>
+                    <div class="md:w-1/2"><img src="[https://placehold.co/800x600/1A1A2E/9333ea?text=Esperia+World](https://placehold.co/800x600/1A1A2E/9333ea?text=Esperia+World)" alt="About Esperia" class="rounded-lg shadow-lg border-2 border-c-border"></div>
                     <div class="md:w-1/2">
                         <h3 class="text-2xl font-bold text-white mb-4 font-title">The Private Server, Reimagined.</h3>
                         <p class="text-c-text-secondary leading-relaxed space-y-4"><span>Welcome to Esperia, a thriving community with over 19,000 members. More than just a game, it’s a space where creativity and exploration come to life.</span><span>With a strong moderation and a zero-tolerance policy for disruptive behavior, players can enjoy the game without worry, focusing on building, learning, and connecting with others. The server continues to grow thanks to its dedicated community.</span></p>
@@ -130,7 +135,7 @@
                 <h2 class="section-title text-3xl font-title text-white mb-6">Join Our Community</h2>
                 <p class="text-c-text-secondary mb-10">Connect with other players, get support, and stay updated with all the latest news and events!</p>
                  <div class="flex justify-center space-x-4">
-                     <a href="[https://discord.gg/Fbr3X9Z9jE](https://discord.gg/Fbr3X9Z9jE)" target="_blank" class="bg-c-accent hover:bg-c-accent-dark text-white font-bold py-3 px-8 rounded-lg transition duration-300">Join Discord</a>
+                     <a href="[https://discord.gg/Fbr3X9Z9jE](https://discord.gg/Fbr3X9Z9jE)" target="_blank" class="bg-gradient-to-r from-c-purple to-c-diamond text-white font-bold py-3 px-8 rounded-lg transition-transform transform hover:scale-105 glow-on-hover">Join Discord</a>
                 </div>
                 <div class="mt-12">
                      <div class="bg-c-bg-light border border-c-border rounded-lg p-6 max-w-sm mx-auto"><h4 class="font-bold text-lg text-white mb-2 font-title">Discord Widget</h4><p class="text-c-text-secondary text-sm">This is where your Discord member list would appear. See comments in the code to learn how to set it up.</p></div>
